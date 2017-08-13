@@ -10,6 +10,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -29,6 +30,8 @@ public class ManHinhDangNhap {
 	private JTextField tfDangNhap;
 	private JPasswordField pass;
 	private JCheckBox cbGhiNho;
+	private JButton btDangNhap;
+	private JButton btThoat;
 	
 	
 	public static void main(String[] args) {
@@ -57,6 +60,8 @@ public class ManHinhDangNhap {
 		createPass();
 		createCbGhiNho();
 		createBtQuenMatKhau();
+		createBtDangNhap();
+		createBtThoat();
 	}
 	
 	public void createGUI(){
@@ -71,7 +76,7 @@ public class ManHinhDangNhap {
 		gbc.gridx=0;
 		gbc.gridy=0;
 		gbc.weighty=1;
-		gbc.gridheight=3;
+		gbc.gridheight=4;
 		pnDangNhap.add(lbImg, gbc);
 		
 		gbc.gridx=1;
@@ -85,12 +90,17 @@ public class ManHinhDangNhap {
 		gbc.gridy=1;
 		pnDangNhap.add(pass, gbc);
 		
+		JPanel pnBt=new JPanel(new FlowLayout(FlowLayout.LEFT));
+		pnBt.add(btDangNhap);
+		pnBt.add(btThoat);
 		gbc.gridy=2;
-		gbc.ipady=1;
-		gbc.weightx=0;
-		pnDangNhap.add(cbGhiNho, gbc);
+		pnDangNhap.add(pnBt, gbc);
 		
 		gbc.gridy=3;
+		gbc.ipady=1;
+		pnDangNhap.add(cbGhiNho, gbc);
+		
+		gbc.gridy=4;
 		pnDangNhap.add(getBtQuenMatKhau(), gbc);
 		
 		frame.add(pnDangNhap,BorderLayout.CENTER);
@@ -98,10 +108,10 @@ public class ManHinhDangNhap {
 	
 	public void createFrame(){
 		frame=new JFrame("Đăng nhập");
-		frame.setBounds(100,100,600,280);
+		frame.setBounds(100,100,600,320);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
-		frame.setResizable(false); //co dinh man hinh
+		//frame.setResizable(false); //co dinh man hinh
 		frame.setLayout(new BorderLayout());
 		frame.setVisible(true);
 	}
@@ -159,5 +169,13 @@ public class ManHinhDangNhap {
 
 	public void createBtQuenMatKhau() {
 		this.btQuenMatKhau = new LinkButton("Quên mật khẩu");
+	}
+	
+	public void createBtDangNhap(){
+		btDangNhap=new JButton("Đăng nhập");
+	}
+	
+	public void createBtThoat(){
+		btThoat=new JButton("Thoát");
 	}
 }
