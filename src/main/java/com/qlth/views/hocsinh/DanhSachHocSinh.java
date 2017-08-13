@@ -7,9 +7,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
-import java.util.Vector;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -19,7 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -143,7 +141,7 @@ public class DanhSachHocSinh {
 
 	public void createLbTieuDe() {
 		this.lbTieuDe = new JLabel("Quản Lý Danh Sách Học Sinh");
-		lbTieuDe.setHorizontalAlignment(lbTieuDe.CENTER);
+		lbTieuDe.setHorizontalAlignment(SwingConstants.CENTER);
 		lbTieuDe.setForeground(Color.BLUE);
 		lbTieuDe.setFont(new Font("SansSerif", Font.BOLD, 25));
 	}
@@ -153,7 +151,7 @@ public class DanhSachHocSinh {
 	}
 
 	public void createCbDanhSachLop() {
-		DefaultComboBoxModel model = new DefaultComboBoxModel();
+		DefaultComboBoxModel<String> model = new DefaultComboBoxModel<String>();
 		model.addElement("Lớp chủ nhiệm");
 		model.addElement("Nam II");
 		model.addElement("Nam III");
