@@ -9,7 +9,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -61,8 +60,6 @@ public class ManHinhDangNhap {
 	}
 	
 	public void createGUI(){
-//		pnImg.add(lbImg, BorderLayout.CENTER);
-//		frame.add(pnImg, BorderLayout.WEST);
 		JPanel pnGioiThieu=new JPanel(new FlowLayout());
 		pnGioiThieu.add(lbDangNhap);
 		frame.add(pnGioiThieu, BorderLayout.PAGE_START);
@@ -104,6 +101,7 @@ public class ManHinhDangNhap {
 		frame.setBounds(100,100,600,280);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
+		frame.setResizable(false); //co dinh man hinh
 		frame.setLayout(new BorderLayout());
 		frame.setVisible(true);
 	}
