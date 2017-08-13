@@ -27,21 +27,21 @@ import com.qlth.factory.PlaceHolderTextField;
 
 public class DanhSachHocSinh {
 	private JFrame frame;
-	private JLabel lb1;
-	private JComboBox<String> cb1;
+	private JLabel lbTieuDe;
+	private JComboBox<String> cbDanhSachLop;
 	private PlaceHolderTextField txtTim;
-	private JButton bt1;
-	private JButton bt2;
-	private JButton bt3;
-	private JButton bt4;
-	private JTable tb1;
-	private JPanel pn1;
-	private JPanel pn1_c1;
-	private JPanel pn1_c2;
-	private JPanel pn1_c2_1;
-	private JPanel pn1_c2_1_1;
-	private JPanel pn1_c2_1_2;
-	private JPanel pn1_c2_1_2_1;
+	private JButton btnKhoiPhuc;
+	private JButton btnThemMoi;
+	private JButton btnXuatExcel;
+	private JButton btnXuatPDF;
+	private JTable tbDanhSachHocSinh;
+	private JPanel pnDanhSach;
+	private JPanel pnTieuDe;
+	private JPanel pnNoiDung;
+	private JPanel pnTimKiem;
+	private JPanel pnTimKiemPhai;
+	private JPanel pnCongCu;
+	private JPanel pnCongCuPhai;
 	
 	/**
 	 * Launch the application.
@@ -68,21 +68,21 @@ public class DanhSachHocSinh {
 	 */
 	private void initialize(){
 		createFrame();
-		createLb1();
-		createCb1();
-		createBt1();
-		createBt2();
-		createBt3();
-		createBt4();
+		createLbTieuDe();
+		createCbDanhSachLop();
 		createTxtTim();
-		createTb1();
-		createPn1();
-		createPn1_c1();
-		createPn1_c2();
-		createPn1_c2_1();
-		createPn1_c2_1_1();
-		createPn1_c2_1_2();
-		createPn1_c2_1_2_1();
+		createBtnKhoiPhuc();
+		createBtnThemMoi();
+		createBtnXuatExcel();
+		createBtnXuatPDF();
+		createTbDanhSachHocSinh();
+		createPnDanhSach();
+		createPnTieuDe();
+		createPnNoiDung();
+		createPnTimKiem();
+		createPnTimKiemPhai();
+		createPnCongCu();
+		createPnCongCuPhai();
 	}
 
 	public JFrame getFrame() {
@@ -97,107 +97,107 @@ public class DanhSachHocSinh {
 	}
 	
 	public void createGUI(){
-		pn1.setBorder(new EmptyBorder(20, 20, 20, 20));
-		lb1.setBorder(new EmptyBorder(10, 0, 50, 0));
-		pn1_c1.add(lb1);
+		pnDanhSach.setBorder(new EmptyBorder(20, 20, 20, 20));
+		lbTieuDe.setBorder(new EmptyBorder(10, 0, 50, 0));
+		pnTieuDe.add(lbTieuDe);
 		
-		JScrollPane sc=new JScrollPane(tb1);
-		pn1.add(pn1_c1, BorderLayout.NORTH);
-		pn1.add(pn1_c2, BorderLayout.CENTER);
+		JScrollPane sc=new JScrollPane(tbDanhSachHocSinh);
+		pnDanhSach.add(pnTieuDe, BorderLayout.NORTH);
+		pnDanhSach.add(pnNoiDung, BorderLayout.CENTER);
 		
-		pn1_c2.add(pn1_c2_1,BorderLayout.NORTH);
-		pn1_c2_1.add(cb1, BorderLayout.WEST);
-		pn1_c2_1.add(pn1_c2_1_1, BorderLayout.EAST);
+		pnNoiDung.add(pnTimKiem,BorderLayout.NORTH);
+		pnTimKiem.add(cbDanhSachLop, BorderLayout.WEST);
+		pnTimKiem.add(pnTimKiemPhai, BorderLayout.EAST);
 		GridBagConstraints gbc=new GridBagConstraints();
 		gbc.fill=GridBagConstraints.VERTICAL;
 		gbc.insets=new Insets(0, 10, 0, 0);
 		gbc.weightx=1;
 		gbc.gridx=0;
 		gbc.gridy=0;
-		pn1_c2_1_1.add(txtTim, gbc);
+		pnTimKiemPhai.add(txtTim, gbc);
 		gbc.weightx=0;
 		gbc.gridx=1;
-		pn1_c2_1_1.add(bt1, gbc);
+		pnTimKiemPhai.add(btnKhoiPhuc, gbc);
 		
 		sc.setBorder(new EmptyBorder(30, 0, 30, 0));
-		pn1_c2.add(sc,BorderLayout.CENTER);
+		pnNoiDung.add(sc,BorderLayout.CENTER);
 		
-		pn1_c2.add(pn1_c2_1_2, BorderLayout.SOUTH);
-		pn1_c2_1_2.add(bt2, BorderLayout.WEST);
-		pn1_c2_1_2.add(pn1_c2_1_2_1, BorderLayout.EAST);
+		pnNoiDung.add(pnCongCu, BorderLayout.SOUTH);
+		pnCongCu.add(btnThemMoi, BorderLayout.WEST);
+		pnCongCu.add(pnCongCuPhai, BorderLayout.EAST);
 		GridBagConstraints gbc2=new GridBagConstraints();
 		gbc2.fill=GridBagConstraints.VERTICAL;
 		gbc2.insets=new Insets(0, 10, 0, 0);
 		gbc2.gridx=0;
 		gbc2.gridy=0;
-		pn1_c2_1_2_1.add(bt3,gbc2);
+		pnCongCuPhai.add(btnXuatExcel,gbc2);
 		gbc2.gridx=1;
-		pn1_c2_1_2_1.add(bt4,gbc2);
+		pnCongCuPhai.add(btnXuatPDF,gbc2);
 		
-		frame.add(pn1);
+		frame.add(pnDanhSach);
 	}
 
-	public JLabel getLb1() {
-		return lb1;
+	public JLabel getLbTieuDe() {
+		return lbTieuDe;
 	}
 
-	public void createLb1() {
-		this.lb1 = new JLabel("Quản Lý Danh Sách Học Sinh");
-		lb1.setHorizontalAlignment(lb1.CENTER);
-		lb1.setForeground(Color.BLUE);
-		lb1.setFont(new Font("SansSerif", Font.BOLD, 25));
+	public void createLbTieuDe() {
+		this.lbTieuDe = new JLabel("Quản Lý Danh Sách Học Sinh");
+		lbTieuDe.setHorizontalAlignment(lbTieuDe.CENTER);
+		lbTieuDe.setForeground(Color.BLUE);
+		lbTieuDe.setFont(new Font("SansSerif", Font.BOLD, 25));
 	}
 
-	public JComboBox<String> getCb1() {
-		return cb1;
+	public JComboBox<String> getCbDanhSachLop() {
+		return cbDanhSachLop;
 	}
 
-	public void createCb1() {
+	public void createCbDanhSachLop() {
 		DefaultComboBoxModel model = new DefaultComboBoxModel();
 		model.addElement("Lớp chủ nhiệm");
 		model.addElement("Nam II");
 		model.addElement("Nam III");
 		model.addElement("Nam IV");
-		this.cb1 = new JComboBox<String>(model);
+		this.cbDanhSachLop = new JComboBox<String>(model);
 	}
 
-	public JButton getBt1() {
-		return bt1;
+	public JButton getBtnKhoiPhuc() {
+		return btnKhoiPhuc;
 	}
 
-	public void createBt1() {
-		this.bt1 = new JButton("Khôi phục");
+	public void createBtnKhoiPhuc() {
+		this.btnKhoiPhuc = new JButton("Khôi phục");
 	}
 
-	public JButton getBt2() {
-		return bt2;
+	public JButton getBtnThemMoi() {
+		return btnThemMoi;
 	}
 
-	public void createBt2() {
-		this.bt2 = new JButton("Thêm Mới");
+	public void createBtnThemMoi() {
+		this.btnThemMoi = new JButton("Thêm Mới");
 	}
 
-	public JButton getBt3() {
-		return bt3;
+	public JButton getBtnXuatExcel() {
+		return btnXuatExcel;
 	}
 
-	public void createBt3() {
-		this.bt3 = new JButton("Xuất Excel");
+	public void createBtnXuatExcel() {
+		this.btnXuatExcel = new JButton("Xuất Excel");
 	}
 
-	public JButton getBt4() {
-		return bt4;
+	public JButton getBtnXuatPDF() {
+		return btnXuatPDF;
 	}
 
-	public void createBt4() {
-		this.bt4 = new JButton("Xuất PDF");
+	public void createBtnXuatPDF() {
+		this.btnXuatPDF = new JButton("Xuất PDF");
 	}
 
-	public JTable getTb1() {
-		return tb1;
+	public JTable getTbDanhSachHocSinh() {
+		return tbDanhSachHocSinh;
 	}
 
-	public void createTb1() {
+	public void createTbDanhSachHocSinh() {
 		
 		DefaultTableModel model = new DefaultTableModel(new Object[][] {
 			{1,"HS001","caominhnhut","Cao Minh Nhựt","Nam","14/04/1988","09645454445","nguyencao@gmail.com","Bến Tre"},{2,"HS001","caominhnhut","Cao Minh Nhựt","Nam","14/04/1988","094654654","nguyencao@gmail.com","Bến Tre"},
@@ -208,70 +208,70 @@ public class DanhSachHocSinh {
 			{11,"HS001","caominhnhut","Cao Minh Nhựt","Nam","14/04/1988","09645454445","nguyencao@gmail.com","Bến Tre"},{12,"HS001","caominhnhut","Cao Minh Nhựt","Nam","14/04/1988","094654654","nguyencao@gmail.com","Bến Tre"},
 			{13,"HS001","caominhnhut","Cao Minh Nhựt","Nam","14/04/1988","09645454445","nguyencao@gmail.com","Bến Tre"},{14,"HS001","caominhnhut","Cao Minh Nhựt","Nam","14/04/1988","094654654","nguyencao@gmail.com","Bến Tre"}},
 		      new Object[] { "STT","MSHS","Tên Đăng Nhập","Họ Tên","Giới Tính","Ngày Sinh","Điện Thoại","Email","Địa Chỉ" });
-		tb1=new JTable(model);
+		tbDanhSachHocSinh=new JTable(model);
 	}
 
-	public JPanel getPn1() {
-		return pn1;
+	public JPanel getPnDanhSach() {
+		return pnDanhSach;
 	}
 
-	public void createPn1() {
-		this.pn1 = new JPanel();
-		pn1.setLayout(new BorderLayout());
+	public void createPnDanhSach() {
+		this.pnDanhSach = new JPanel();
+		pnDanhSach.setLayout(new BorderLayout());
 	}
 
-	public JPanel getPn1_c1() {
-		return pn1_c1;
+	public JPanel getPnTieuDe() {
+		return pnTieuDe;
 	}
 
-	public void createPn1_c1() {
-		this.pn1_c1 = new JPanel();
-		pn1_c1.setLayout(new FlowLayout(FlowLayout.CENTER));
+	public void createPnTieuDe() {
+		this.pnTieuDe = new JPanel();
+		pnTieuDe.setLayout(new FlowLayout(FlowLayout.CENTER));
 	}
 	
-	public JPanel getPn1_c2() {
-		return pn1_c2;
+	public JPanel getPnNoiDung() {
+		return pnNoiDung;
 	}
 
-	public void createPn1_c2() {
-		this.pn1_c2 = new JPanel();
-		pn1_c2.setLayout(new BorderLayout());
+	public void createPnNoiDung() {
+		this.pnNoiDung = new JPanel();
+		pnNoiDung.setLayout(new BorderLayout());
 	}
 	
-	public JPanel getPn1_c2_1(){
-		return pn1_c2_1;
+	public JPanel getPnTimKiem(){
+		return pnTimKiem;
 	}
 	
-	public void createPn1_c2_1() {
-		this.pn1_c2_1 = new JPanel();
-		pn1_c2_1.setLayout(new BorderLayout());
+	public void createPnTimKiem() {
+		this.pnTimKiem = new JPanel();
+		pnTimKiem.setLayout(new BorderLayout());
 	}
 	
-	public JPanel getPn1_c2_1_1(){
-		return pn1_c2_1_1;
+	public JPanel getPnTimKiemPhai(){
+		return pnTimKiemPhai;
 	}
 	
-	public void createPn1_c2_1_1() {
-		this.pn1_c2_1_1 = new JPanel();
-		pn1_c2_1_1.setLayout(new GridBagLayout());
+	public void createPnTimKiemPhai() {
+		this.pnTimKiemPhai = new JPanel();
+		pnTimKiemPhai.setLayout(new GridBagLayout());
 	}
 
-	public JPanel getPn1_c2_1_2(){
-		return pn1_c2_1_2;
+	public JPanel getPnCongCu(){
+		return pnCongCu;
 	}
 	
-	public void createPn1_c2_1_2() {
-		this.pn1_c2_1_2 = new JPanel();
-		pn1_c2_1_2.setLayout(new BorderLayout());
+	public void createPnCongCu() {
+		this.pnCongCu = new JPanel();
+		pnCongCu.setLayout(new BorderLayout());
 	}
 	
-	public JPanel getPn1_c2_1_2_1(){
-		return pn1_c2_1_2_1;
+	public JPanel getPnCongCuPhai(){
+		return pnCongCuPhai;
 	}
 	
-	public void createPn1_c2_1_2_1() {
-		this.pn1_c2_1_2_1 = new JPanel();
-		pn1_c2_1_2_1.setLayout(new GridBagLayout());
+	public void createPnCongCuPhai() {
+		this.pnCongCuPhai = new JPanel();
+		pnCongCuPhai.setLayout(new GridBagLayout());
 	}
 
 	public PlaceHolderTextField getTxtTim() {
