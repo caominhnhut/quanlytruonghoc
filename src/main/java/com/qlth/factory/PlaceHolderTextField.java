@@ -11,9 +11,9 @@ public class PlaceHolderTextField extends JTextField {
 	private String placeholder;
 
 	public PlaceHolderTextField(String text, int size) {
-		setColumns(10);
+		setColumns(size);
 		final Font f = getFont();
-		setFont(new Font(f.getName(), f.getStyle(), size));
+		setFont(new Font(f.getName(), f.getStyle(), 14));
 		placeholder=text;
 	}
 

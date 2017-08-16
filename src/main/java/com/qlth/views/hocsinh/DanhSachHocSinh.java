@@ -117,7 +117,7 @@ public class DanhSachHocSinh {
 		gbc.gridx=1;
 		pnTimKiemPhai.add(btnKhoiPhuc, gbc);
 		
-		sc.setBorder(new EmptyBorder(30, 0, 30, 0));
+		sc.setBorder(new EmptyBorder(40, 0, 40, 0));
 		pnNoiDung.add(sc,BorderLayout.CENTER);
 		
 		pnNoiDung.add(pnCongCu, BorderLayout.SOUTH);
@@ -277,7 +277,7 @@ public class DanhSachHocSinh {
 	}
 
 	public void createTxtTim() {
-		this.txtTim = new PlaceHolderTextField("Nhap ten can tim",17);
+		this.txtTim = new PlaceHolderTextField("Nhap ten can tim",12);
 	}
 	
 	
