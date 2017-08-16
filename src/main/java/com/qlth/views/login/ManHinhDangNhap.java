@@ -111,7 +111,7 @@ public class ManHinhDangNhap {
 		frame.setBounds(100,100,600,320);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
-		//frame.setResizable(false); //co dinh man hinh
+		frame.setResizable(false); //co dinh man hinh
 		frame.setLayout(new BorderLayout());
 		frame.setVisible(true);
 	}
