@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -25,8 +27,8 @@ public class ManHinhQuanLy extends JFrame {
 	private JButton btFinance;
 	private JButton btTimeTable;
 
-	public ManHinhQuanLy(String title) {
-		super(title);
+	public ManHinhQuanLy() {
+		super("Man Hinh Quan Ly");
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setMinimumSize(new Dimension(700, 600));
 		setLayout(new BorderLayout());
@@ -89,7 +91,7 @@ public class ManHinhQuanLy extends JFrame {
 	public JPanel createPanel() {
 		JPanel pn = new JPanel();
 		JLabel pnImg = new JLabel();
-		ImageIcon icon = new ImageIcon("src\\main\\resources\\images\\main.png");
+		ImageIcon icon = createIconFromResource("images\\main.png");
 		pnImg.setIcon(icon);
 		pn.add(pnImg);
 		return pn;
@@ -127,7 +129,7 @@ public class ManHinhQuanLy extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		new ManHinhQuanLy("Man Hinh Quan Ly");
+		new ManHinhQuanLy();
 	}
 
 	public JLabel getLbImg() {
@@ -164,6 +166,13 @@ public class ManHinhQuanLy extends JFrame {
 		ImageIcon icon = createIconFromResource("images\\student_icon.png");
 		this.btStudent.setIcon(icon);
 		this.btStudent.setText("Quản Lý Học Sinh");
+		this.btStudent.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 	}
 
 	public JButton getBtOfficials() {
