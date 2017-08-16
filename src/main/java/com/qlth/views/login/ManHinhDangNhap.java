@@ -8,6 +8,8 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,6 +21,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import com.qlth.factory.LinkButton;
+import com.qlth.factory.PlaceHolderTextField;
+import com.qlth.views.quanly.ManHinhQuanLy;
 
 public class ManHinhDangNhap {
 
@@ -34,7 +38,7 @@ public class ManHinhDangNhap {
 	private JButton btThoat;
 	
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -45,7 +49,7 @@ public class ManHinhDangNhap {
 				}
 			}
 		});
-	}
+	}*/
 	
 	public ManHinhDangNhap(){
 		initialize();
@@ -143,7 +147,8 @@ public class ManHinhDangNhap {
 	}
 
 	public void createTfDangNhap() {
-		this.tfDangNhap = new JTextField("Tên đăng nhập");
+		this.tfDangNhap = new PlaceHolderTextField("Tên Đăng Nhập",12);;
+		
 	}
 
 	public JPasswordField getPass() {
@@ -173,6 +178,13 @@ public class ManHinhDangNhap {
 	
 	public void createBtDangNhap(){
 		btDangNhap=new JButton("Đăng nhập");
+		btDangNhap.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				new ManHinhQuanLy();
+			}
+		});
 	}
 	
 	public void createBtThoat(){
