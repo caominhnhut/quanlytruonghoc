@@ -135,7 +135,7 @@ public class ManHinhQuanLy extends JFrame {
 	}
 
 	public void createLbImg() {
-		ImageIcon icon = new ImageIcon("D:\\workspace\\EmployeeManagement\\img\\addimage.png");
+		ImageIcon icon = createIconFromResource("images\\addimage.png");
 		this.lbImg = new JLabel(icon);
 	}
 
