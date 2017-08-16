@@ -1,6 +1,7 @@
 package com.qlth.views.quanly;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -89,6 +90,8 @@ public class ManHinhQuanLy extends JFrame {
 	public JPanel createPanel() {
 		JPanel pn = new JPanel();
 		JLabel pnImg = new JLabel();
+		CardLayout card=new CardLayout();
+		pnImg.setLayout(card);
 		ImageIcon icon = new ImageIcon("src\\main\\resources\\images\\main.png");
 		pnImg.setIcon(icon);
 		pn.add(pnImg);

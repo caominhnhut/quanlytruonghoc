@@ -1,3 +1,7 @@
 eclipse.preferences.version=1
+<<<<<<< HEAD
 encoding//src/main/java/com/qlth/views/quanly/ManHinhQuanLy.java=UTF-8
+=======
+encoding//src/main/java/com/qlth/views/hocsinh/DanhSachHocSinh.java=UTF-8
+>>>>>>> 11cea378fed68140a33df0c0d8d660add655e7e6
 encoding/<project>=UTF-8
