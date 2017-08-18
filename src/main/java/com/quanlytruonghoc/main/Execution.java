@@ -1,15 +1,29 @@
 package com.quanlytruonghoc.main;
 
+import java.awt.EventQueue;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import com.qlth.views.login.ManHinhDangNhap;
 
 public class Execution {
 
 	private static final Log logger = LogFactory.getLog(Execution.class);
 
 	public static void main(String[] args) {
-		Execution exec = new Execution();
-		exec.runMe("Nhut Nguyen");
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ManHinhDangNhap window = new ManHinhDangNhap();
+					window.createGUI();
+					Execution exec = new Execution();
+					exec.runMe("Nhut Nguyen");
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 	private void runMe(String parameter) {
