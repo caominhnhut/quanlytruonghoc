@@ -2,7 +2,6 @@ package com.qlth.views.login;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -24,7 +23,7 @@ import com.qlth.factory.LinkButton;
 import com.qlth.factory.PlaceHolderTextField;
 import com.qlth.views.quanly.ManHinhQuanLy;
 
-public class ManHinhDangNhap {
+public class ManHinhDangNhap implements ActionListener{
 
 	private JFrame frame;
 	private JPanel pnDangNhap;
@@ -112,12 +111,14 @@ public class ManHinhDangNhap {
 	
 	public void createFrame(){
 		frame=new JFrame("Đăng nhập");
-		frame.setBounds(100,100,600,320);
+		frame.setBounds(100,100,600,340);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false); //co dinh man hinh
 		frame.setLayout(new BorderLayout());
 		frame.setVisible(true);
+		ImageIcon icon=layAnhTuResource("images\\school_icon.png");
+		frame.setIconImage(icon.getImage());
 	}
 	
 	public void createPnDangNhap(){
@@ -139,7 +140,7 @@ public class ManHinhDangNhap {
 
 	public void createLbImg() {
 		this.lbImg = new  JLabel();
-		lbImg.setIcon(new ImageIcon(getClass().getClassLoader().getResource("img/login.png")));
+		lbImg.setIcon(layAnhTuResource("img\\login.png"));
 	}
 
 	public JTextField getTfDangNhap() {
@@ -147,7 +148,7 @@ public class ManHinhDangNhap {
 	}
 
 	public void createTfDangNhap() {
-		this.tfDangNhap = new PlaceHolderTextField("Tên Đăng Nhập",12);;
+		this.tfDangNhap = new PlaceHolderTextField("Tên Đăng Nhập",10);;
 		
 	}
 
@@ -177,17 +178,27 @@ public class ManHinhDangNhap {
 	}
 	
 	public void createBtDangNhap(){
-		btDangNhap=new JButton("Đăng nhập");
-		btDangNhap.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				new ManHinhQuanLy();
-			}
-		});
+		ImageIcon icon = layAnhTuResource("img\\check-icon.png");
+		this.btDangNhap = new JButton();
+		this.btDangNhap.setIcon(icon);
+		this.btDangNhap.setText("Đăng Nhập");
+		this.btDangNhap.addActionListener(this);
 	}
 	
 	public void createBtThoat(){
-		btThoat=new JButton("Thoát");
+		btThoat=new JButton();
+		btThoat.setText("Thoát");
+		ImageIcon icon=layAnhTuResource("img\\Error-icon.png");
+		btThoat.setIcon(icon);
+	}
+	
+	public ImageIcon layAnhTuResource(String path) {
+		return new ImageIcon(getClass().getClassLoader().getResource(path));
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==btDangNhap){
+			new ManHinhQuanLy();
+		}		
 	}
 }

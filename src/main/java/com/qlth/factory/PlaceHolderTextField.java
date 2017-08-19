@@ -13,7 +13,7 @@ public class PlaceHolderTextField extends JTextField {
 	public PlaceHolderTextField(String text, int size) {
 		setColumns(size);
 		final Font f = getFont();
-		setFont(new Font(f.getName(), f.getStyle(), 20));
+		setFont(new Font(f.getName(), f.getStyle(), 14));
 		placeholder=text;
 	}
 
@@ -28,7 +28,7 @@ public class PlaceHolderTextField extends JTextField {
 		final Graphics2D g = (Graphics2D) pG;
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g.setColor(getDisabledTextColor());
-		g.drawString(placeholder, getInsets().left, pG.getFontMetrics().getMaxAscent() + getInsets().top);
+		g.drawString(placeholder, getInsets().left, 25);
 	}
 
 	public void setPlaceholder(final String s) {
