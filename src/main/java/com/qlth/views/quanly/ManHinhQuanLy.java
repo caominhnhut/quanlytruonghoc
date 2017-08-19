@@ -6,8 +6,15 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
+
+import com.qlth.views.hocsinh.DanhSachHocSinh;
 
 @SuppressWarnings("serial")
 public class ManHinhQuanLy extends JFrame {
@@ -30,7 +37,7 @@ public class ManHinhQuanLy extends JFrame {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setMinimumSize(new Dimension(700, 600));
 		setLayout(new BorderLayout());
-		ImageIcon icon = new ImageIcon("src\\main\\resources\\images\\school_icon.png");
+		ImageIcon icon = createIconFromResource("images\\school_icon.png");
 		setIconImage(icon.getImage());
 		initialize();
 		add(createWestPanel(), BorderLayout.WEST);
@@ -88,10 +95,10 @@ public class ManHinhQuanLy extends JFrame {
 
 	public JPanel createPanel() {
 		JPanel pn = new JPanel();
-		JLabel pnImg = new JLabel();
-		ImageIcon icon = new ImageIcon("src\\main\\resources\\images\\main.png");
-		pnImg.setIcon(icon);
-		pn.add(pnImg);
+		pn.setLayout(new BorderLayout());
+		DanhSachHocSinh dshs=new DanhSachHocSinh();
+		JPanel pn1=dshs.createPnDSHS();
+		pn.add(pn1,BorderLayout.CENTER);
 		return pn;
 
 	}
