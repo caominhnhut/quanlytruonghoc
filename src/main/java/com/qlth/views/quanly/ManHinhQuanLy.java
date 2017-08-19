@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
 import com.qlth.constant.Constant;
+
 import com.qlth.views.hocsinh.DanhSachHocSinh;
 
 @SuppressWarnings("serial")
@@ -126,11 +127,10 @@ public class ManHinhQuanLy extends JFrame implements ActionListener {
 		ImageIcon icon = createIconFromResource("images\\main.png");
 		pnImg.setIcon(icon);
 		pnView.add(pnImg, "1");
-		DanhSachHocSinh a = new DanhSachHocSinh();
-		pnView.add(a.createPnDSHS(), Constant.MAN_HINH_DSHS);
+		DanhSachHocSinh dshs = new DanhSachHocSinh();
+		pnView.add(dshs.createPnDSHS(), Constant.MAN_HINH_DSHS);
 		pnView.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 50));
 		return pnView;
-
 	}
 
 	// create main panel

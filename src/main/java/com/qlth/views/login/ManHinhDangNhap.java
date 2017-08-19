@@ -110,7 +110,7 @@ public class ManHinhDangNhap implements ActionListener {
 
 	public void createFrame() {
 		frame = new JFrame("Đăng nhập");
-		frame.setBounds(100, 100, 600, 320);
+		frame.setBounds(100, 100, 600, 340);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		;
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false); // co dinh man hinh
