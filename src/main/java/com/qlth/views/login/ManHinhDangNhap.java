@@ -23,7 +23,7 @@ import com.qlth.factory.LinkButton;
 import com.qlth.factory.PlaceHolderTextField;
 import com.qlth.views.quanly.ManHinhQuanLy;
 
-public class ManHinhDangNhap implements ActionListener{
+public class ManHinhDangNhap implements ActionListener {
 
 	private JFrame frame;
 	private JPanel pnDangNhap;
@@ -35,26 +35,25 @@ public class ManHinhDangNhap implements ActionListener{
 	private JCheckBox cbGhiNho;
 	private JButton btDangNhap;
 	private JButton btThoat;
-	
-	
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ManHinhDangNhap window = new ManHinhDangNhap();
-					window.createGUI();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
-	
-	public ManHinhDangNhap(){
+
+	// public static void main(String[] args) {
+	// EventQueue.invokeLater(new Runnable() {
+	// public void run() {
+	// try {
+	// ManHinhDangNhap window = new ManHinhDangNhap();
+	// window.createGUI();
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// }
+	// }
+	// });
+	// }
+
+	public ManHinhDangNhap() {
 		initialize();
 	}
-	
-	public void initialize(){
+
+	public void initialize() {
 		createFrame();
 		createPnDangNhap();
 		createLbDangNhap();
@@ -66,68 +65,76 @@ public class ManHinhDangNhap implements ActionListener{
 		createBtDangNhap();
 		createBtThoat();
 	}
-	
-	public void createGUI(){
-		JPanel pnGioiThieu=new JPanel(new FlowLayout());
+
+	public void createGUI() {
+		JPanel pnGioiThieu = new JPanel(new FlowLayout());
 		pnGioiThieu.add(lbDangNhap);
 		frame.add(pnGioiThieu, BorderLayout.PAGE_START);
-		
-		GridBagConstraints gbc=new GridBagConstraints();
-		gbc.fill=GridBagConstraints.BOTH;
-		gbc.insets=new Insets(5, 5, 5, 5);
-		
-		gbc.gridx=0;
-		gbc.gridy=0;
-		gbc.weighty=1;
-		gbc.gridheight=4;
+
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.insets = new Insets(5, 5, 5, 5);
+
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.weighty = 1;
+		gbc.gridheight = 4;
 		pnDangNhap.add(lbImg, gbc);
-		
-		gbc.gridx=1;
-		gbc.gridy=0;
-		gbc.weightx=1;
-		gbc.weighty=0;
-		gbc.gridheight=1;
-		gbc.ipady=17;
+
+		gbc.gridx = 1;
+		gbc.gridy = 0;
+		gbc.weightx = 1;
+		gbc.weighty = 0;
+		gbc.gridheight = 1;
+		gbc.ipady = 17;
 		pnDangNhap.add(tfDangNhap, gbc);
-		
-		gbc.gridy=1;
+
+		gbc.gridy = 1;
 		pnDangNhap.add(pass, gbc);
-		
-		JPanel pnBt=new JPanel(new FlowLayout(FlowLayout.LEFT));
+
+		JPanel pnBt = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		pnBt.add(btDangNhap);
 		pnBt.add(btThoat);
-		gbc.gridy=2;
+		gbc.gridy = 2;
 		pnDangNhap.add(pnBt, gbc);
-		
-		gbc.gridy=3;
-		gbc.ipady=1;
+
+		gbc.gridy = 3;
+		gbc.ipady = 1;
 		pnDangNhap.add(cbGhiNho, gbc);
-		
-		gbc.gridy=4;
+
+		gbc.gridy = 4;
 		pnDangNhap.add(getBtQuenMatKhau(), gbc);
-		
-		frame.add(pnDangNhap,BorderLayout.CENTER);
+
+		frame.add(pnDangNhap, BorderLayout.CENTER);
 	}
-	
-	public void createFrame(){
-		frame=new JFrame("Đăng nhập");
-		frame.setBounds(100,100,600,340);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+	public void createFrame() {
+		frame = new JFrame("Đăng nhập");
+		frame.setBounds(100, 100, 600, 320);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		;
 		frame.setLocationRelativeTo(null);
-		frame.setResizable(false); //co dinh man hinh
+		frame.setResizable(false); // co dinh man hinh
 		frame.setLayout(new BorderLayout());
 		frame.setVisible(true);
 		ImageIcon icon=layAnhTuResource("images\\school_icon.png");
 		frame.setIconImage(icon.getImage());
 	}
-	
-	public void createPnDangNhap(){
-		this.pnDangNhap=new JPanel();
+
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btDangNhap) {
+			frame.dispose();
+			ManHinhQuanLy mhql = new ManHinhQuanLy();
+			mhql.showUI();
+		}
+	}
+
+	public void createPnDangNhap() {
+		this.pnDangNhap = new JPanel();
 		this.pnDangNhap.setLayout(new GridBagLayout());
 	}
-	
-	public void createLbDangNhap(){
-		lbDangNhap=new JLabel();
+
+	public void createLbDangNhap() {
+		lbDangNhap = new JLabel();
 		lbDangNhap.setText("XIN MỜI ĐĂNG NHẬP");
 		lbDangNhap.setForeground(Color.RED);
 		lbDangNhap.setOpaque(true);
@@ -148,8 +155,7 @@ public class ManHinhDangNhap implements ActionListener{
 	}
 
 	public void createTfDangNhap() {
-		this.tfDangNhap = new PlaceHolderTextField("Tên Đăng Nhập",10);;
-		
+		this.tfDangNhap = new PlaceHolderTextField("Tên Đăng Nhập", 12);
 	}
 
 	public JPasswordField getPass() {
@@ -158,7 +164,7 @@ public class ManHinhDangNhap implements ActionListener{
 
 	public void createPass() {
 		this.pass = new JPasswordField();
-		
+
 	}
 
 	public JCheckBox getCbGhiNho() {
@@ -194,11 +200,5 @@ public class ManHinhDangNhap implements ActionListener{
 	
 	public ImageIcon layAnhTuResource(String path) {
 		return new ImageIcon(getClass().getClassLoader().getResource(path));
-	}
-
-	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==btDangNhap){
-			new ManHinhQuanLy();
-		}		
 	}
 }
