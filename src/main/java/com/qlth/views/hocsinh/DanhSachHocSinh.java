@@ -12,7 +12,6 @@ import java.awt.Insets;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -24,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
 import com.qlth.factory.PlaceHolderTextField;
 
 public class DanhSachHocSinh {
-	private JFrame frame;
+
 	private JLabel lbTieuDe;
 	private JComboBox<String> cbDanhSachLop;
 	private PlaceHolderTextField txtTim;
@@ -33,39 +32,19 @@ public class DanhSachHocSinh {
 	private JButton btnXuatExcel;
 	private JButton btnXuatPDF;
 	private JTable tbDanhSachHocSinh;
-	private JPanel pnDanhSach;
+	public JPanel pnDanhSach;
 	private JPanel pnTieuDe;
 	private JPanel pnNoiDung;
 	private JPanel pnTimKiem;
 	private JPanel pnTimKiemPhai;
 	private JPanel pnCongCu;
 	private JPanel pnCongCuPhai;
-	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DanhSachHocSinh window = new DanhSachHocSinh();
-					window.createGUI();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	
+		
 	public DanhSachHocSinh(){
 		initialize();
 	}
 	
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize(){
-		createFrame();
 		createLbTieuDe();
 		createCbDanhSachLop();
 		createTxtTim();
@@ -83,19 +62,7 @@ public class DanhSachHocSinh {
 		createPnCongCuPhai();
 	}
 
-	public JFrame getFrame() {
-		return frame;
-	}
-
-	public void createFrame() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 600, 450);
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	}
-	
-	public void createGUI(){
-		pnDanhSach.setBorder(new EmptyBorder(20, 20, 20, 20));
+	public JPanel createPnDSHS(){
 		lbTieuDe.setBorder(new EmptyBorder(10, 0, 50, 0));
 		pnTieuDe.add(lbTieuDe);
 		
@@ -132,7 +99,7 @@ public class DanhSachHocSinh {
 		gbc2.gridx=1;
 		pnCongCuPhai.add(btnXuatPDF,gbc2);
 		
-		frame.add(pnDanhSach);
+		return pnDanhSach;
 	}
 
 	public JLabel getLbTieuDe() {
@@ -214,7 +181,7 @@ public class DanhSachHocSinh {
 	}
 
 	public void createPnDanhSach() {
-		this.pnDanhSach = new JPanel();
+		pnDanhSach = new JPanel();
 		pnDanhSach.setLayout(new BorderLayout());
 	}
 

@@ -4,16 +4,25 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
+import com.qlth.constant.Constant;
+import com.qlth.views.hocsinh.DanhSachHocSinh;
+
 @SuppressWarnings("serial")
-public class ManHinhQuanLy extends JFrame {
+public class ManHinhQuanLy extends JFrame implements ActionListener {
 	private JLabel lbImg;
 	private JLabel lbUser;
 	private JLabel lbId;
@@ -27,33 +36,55 @@ public class ManHinhQuanLy extends JFrame {
 	private JButton btEquipment;
 	private JButton btFinance;
 	private JButton btTimeTable;
+	private JPanel pnWest;
+	private JPanel userPanel;
+	private JPanel functionPanel;
+	private JPanel pnView;
+	private CardLayout card;
+	private JPanel pnMain;
 
 	public ManHinhQuanLy() {
 		super("Man Hinh Quan Ly");
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setMinimumSize(new Dimension(700, 600));
 		setLayout(new BorderLayout());
-		ImageIcon icon = new ImageIcon("src\\main\\resources\\images\\school_icon.png");
+		ImageIcon icon = createIconFromResource("images\\school_icon.png");
 		setIconImage(icon.getImage());
 		initialize();
-		add(createWestPanel(), BorderLayout.WEST);
-		add(createMainPanel(), BorderLayout.CENTER);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 	}
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					 ManHinhQuanLy mhql=new ManHinhQuanLy();
+					 mhql.showUI();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+
+	public void showUI() {
+		add(createWestPanel(), BorderLayout.WEST);
+		add(createMainPanel(), BorderLayout.CENTER);
+	}
 
 	public JPanel createWestPanel() {
-		JPanel west = new JPanel();
-		west.setLayout(new BorderLayout(20, 20));
-		west.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 0));
-		west.add(createPanelUser(), BorderLayout.NORTH);
-		west.add(createPanelFunction(), BorderLayout.CENTER);
-		return west;
+		pnWest = new JPanel();
+		pnWest.setLayout(new BorderLayout(20, 20));
+		pnWest.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 0));
+		pnWest.add(createPanelUser(), BorderLayout.NORTH);
+		pnWest.add(createPanelFunction(), BorderLayout.CENTER);
+		return pnWest;
 	}
 
 	// create panel user
 	public JPanel createPanelUser() {
-		JPanel userPanel = new JPanel();
+		userPanel = new JPanel();
 		userPanel.setLayout(new BorderLayout(10, 10));
 		userPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		userPanel.add(getLbImg(), BorderLayout.NORTH);
@@ -70,7 +101,7 @@ public class ManHinhQuanLy extends JFrame {
 
 	// create panel function
 	public JPanel createPanelFunction() {
-		JPanel functionPanel = new JPanel();
+		functionPanel = new JPanel();
 		functionPanel.setLayout(new GridLayout(9, 1, 10, 10));
 		functionPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		functionPanel.add(getBtStudent());
@@ -90,28 +121,31 @@ public class ManHinhQuanLy extends JFrame {
 	}
 
 	public JPanel createPanel() {
-		JPanel pn = new JPanel();
+		pnView = new JPanel();
 		JLabel pnImg = new JLabel();
-		CardLayout card=new CardLayout();
-		pnImg.setLayout(card);
+		pnView.setLayout(card);
 		ImageIcon icon = createIconFromResource("images\\main.png");
 		pnImg.setIcon(icon);
-		pn.add(pnImg);
-		return pn;
+		pnView.add(pnImg, "1");
+		DanhSachHocSinh a = new DanhSachHocSinh();
+		pnView.add(a.createPnDSHS(), Constant.MAN_HINH_DSHS);
+		pnView.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 50));
+		return pnView;
 
 	}
 
 	// create main panel
 	public JPanel createMainPanel() {
-		JPanel main = new JPanel();
-		main.setLayout(new BorderLayout(20, 20));
-		main.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 0));
-		main.add(getLbTitle(), BorderLayout.NORTH);
-		main.add(createPanel(), BorderLayout.CENTER);
-		return main;
+		pnMain = new JPanel();
+		pnMain.setLayout(new BorderLayout(20, 20));
+		pnMain.setBorder(BorderFactory.createEmptyBorder(20, 50, 20, 0));
+		pnMain.add(getLbTitle(), BorderLayout.NORTH);
+		pnMain.add(createPanel(), BorderLayout.CENTER);
+		return pnMain;
 	}
 
 	public void initialize() {
+		this.createCard();
 		this.createLbImg();
 		this.createLbUser();
 		this.createLbId();
@@ -129,10 +163,6 @@ public class ManHinhQuanLy extends JFrame {
 
 	public ImageIcon createIconFromResource(String path) {
 		return new ImageIcon(getClass().getClassLoader().getResource(path));
-	}
-
-	public static void main(String[] args) {
-		new ManHinhQuanLy();
 	}
 
 	public JLabel getLbImg() {
@@ -169,13 +199,7 @@ public class ManHinhQuanLy extends JFrame {
 		ImageIcon icon = createIconFromResource("images\\student_icon.png");
 		this.btStudent.setIcon(icon);
 		this.btStudent.setText("Quản Lý Học Sinh");
-		this.btStudent.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
+		this.btStudent.addActionListener(this);
 	}
 
 	public JButton getBtOfficials() {
@@ -275,4 +299,17 @@ public class ManHinhQuanLy extends JFrame {
 		this.lbTitle.setFont(new Font("Arial", 20, 50));
 	}
 
+	public CardLayout getCard() {
+		return card;
+	}
+
+	public void createCard() {
+		this.card = new CardLayout();
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btStudent) {
+			card.show(pnView, Constant.MAN_HINH_DSHS);
+		}
+	}
 }
