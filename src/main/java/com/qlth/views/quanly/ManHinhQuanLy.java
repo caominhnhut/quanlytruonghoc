@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -14,6 +15,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
@@ -42,6 +46,10 @@ public class ManHinhQuanLy extends JFrame implements ActionListener {
 	private JPanel pnView;
 	private CardLayout card;
 	private JPanel pnMain;
+	private JMenuBar mnBar;
+	private JMenu mnFile;
+	private JMenu mnView;
+	private JMenuItem mnItemLogout;
 
 	public ManHinhQuanLy() {
 		super("Man Hinh Quan Ly");
@@ -55,22 +63,23 @@ public class ManHinhQuanLy extends JFrame implements ActionListener {
 		setVisible(true);
 	}
 
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					ManHinhQuanLy mhql = new ManHinhQuanLy();
-//					mhql.showUI();
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ManHinhQuanLy mhql = new ManHinhQuanLy();
+					mhql.showUI();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
 	public void showUI() {
 		add(createWestPanel(), BorderLayout.WEST);
 		add(createMainPanel(), BorderLayout.CENTER);
+		setJMenuBar(createMnBar());
 	}
 
 	public JPanel createWestPanel() {
@@ -158,6 +167,11 @@ public class ManHinhQuanLy extends JFrame implements ActionListener {
 		this.createBtLibrary();
 		this.createBtTimeTable();
 		this.createLbTitle();
+		this.createMnItemLogout();
+		this.createMnFile();
+		this.createMnView();
+		this.createMnBar();
+		
 	}
 
 	public ImageIcon createIconFromResource(String path) {
@@ -304,6 +318,37 @@ public class ManHinhQuanLy extends JFrame implements ActionListener {
 
 	public void createCard() {
 		this.card = new CardLayout();
+	}
+	public JMenu getMnFile() {
+		return mnFile;
+	}
+
+	public void createMnFile() {
+		this.mnFile = new JMenu("File");
+		this.mnFile.add(mnItemLogout);
+	}
+
+	public JMenu getMnView() {
+		return mnView;
+	}
+
+	public void createMnView() {
+		this.mnView = new JMenu("View");
+	}
+	
+	public JMenuBar createMnBar() {
+		this.mnBar = new JMenuBar();
+		this.mnBar.add(mnFile);
+		this.mnBar.add(mnView);
+		return this.mnBar;
+	}
+	
+	public JMenuItem getMnItemLogout() {
+		return mnItemLogout;
+	}
+
+	public void createMnItemLogout() {
+		this.mnItemLogout = new JMenuItem("Logout");
 	}
 
 	public void actionPerformed(ActionEvent e) {

@@ -140,7 +140,7 @@ public class ManHinhDangNhap implements ActionListener {
 		lbDangNhap.setOpaque(true);
 		lbDangNhap.setFont(new Font("Serif", Font.BOLD, 35));
 	}
-
+	
 	public JLabel getLbImg() {
 		return lbImg;
 	}
