@@ -21,6 +21,33 @@ public class NguoiDung {
 	protected String trangthai;
 	protected String loaiND;
 
+	public NguoiDung(String maND, String tenDN, String matkhau, String hoten, String cmnd, Date ngaycap, String noicap,
+			String sdt, Date ngaysinh, String dantoc, String tongiao, String quoctich, String gioitinh, String hinhanh,
+			String diachi, String trangthai, String loaiND) {
+		super();
+		MaND = maND;
+		this.tenDN = tenDN;
+		this.matkhau = matkhau;
+		this.hoten = hoten;
+		this.cmnd = cmnd;
+		this.ngaycap = ngaycap;
+		this.noicap = noicap;
+		this.sdt = sdt;
+		this.ngaysinh = ngaysinh;
+		this.dantoc = dantoc;
+		this.tongiao = tongiao;
+		this.quoctich = quoctich;
+		this.gioitinh = gioitinh;
+		this.hinhanh = hinhanh;
+		this.diachi = diachi;
+		this.trangthai = trangthai;
+		this.loaiND = loaiND;
+	}
+	
+	public NguoiDung() {
+		super();
+	}
+
 	public String getMaND() {
 		return MaND;
 	}

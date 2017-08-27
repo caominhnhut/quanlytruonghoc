@@ -146,7 +146,7 @@ public class ManHinhQuanLy extends JFrame implements ActionListener {
 	public JPanel createMainPanel() {
 		pnMain = new JPanel();
 		pnMain.setLayout(new BorderLayout(20, 20));
-		pnMain.setBorder(BorderFactory.createEmptyBorder(20, 50, 20, 0));
+		pnMain.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 0));
 		pnMain.add(getLbTitle(), BorderLayout.NORTH);
 		pnMain.add(createPanel(), BorderLayout.CENTER);
 		return pnMain;
@@ -309,7 +309,7 @@ public class ManHinhQuanLy extends JFrame implements ActionListener {
 
 	public void createLbTitle() {
 		this.lbTitle = new JLabel("PHẦN MỀM QUẢN LÝ TRƯỜNG HỌC", JLabel.CENTER);
-		this.lbTitle.setFont(new Font("Arial", 20, 50));
+		this.lbTitle.setFont(new Font("Arial", 20, 30));
 	}
 
 	public CardLayout getCard() {
