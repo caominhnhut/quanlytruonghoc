@@ -4,18 +4,26 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
+import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 
-import com.sun.media.jfxmediaimpl.platform.java.JavaPlatform;
+import com.qlth.factory.PlaceHolderTextField;
 
 
 public class ThemHocSinh {
@@ -33,22 +41,28 @@ public class ThemHocSinh {
 	private JLabel lbDienThoaiMe;
 	private JLabel lbAnh;
 	private JTextField tfHoTen;
-	private JTextField tfEmail;
-	private JTextField tfTenDangNhap;
+	private PlaceHolderTextField ptfEmail;
+	private PlaceHolderTextField ptfTenDangNhap;
 	private JTextField tfCMND;
-	private JTextField tfSoDienThoai;
+	private PlaceHolderTextField ptfSoDienThoai;
 	private JPasswordField pfMatKhau;
-	private JTextField tfNgaySinh;
+	private PlaceHolderTextField ptfNgaySinh;
 	private JTextField tfDanToc;
-	private JTextField tfTonGiao;
-	private JTextField tfNgayVaoHoc;
+	private PlaceHolderTextField ptfTonGiao;
+	private PlaceHolderTextField ptfNgayVaoHoc;
 	private JTextField tfDiaChi;
-	private JTextField tfHoTenCha;
-	private JTextField tfNamSinhCha;
+	private PlaceHolderTextField ptfHoTenCha;
+	private PlaceHolderTextField ptfNgheNghiepCha;
 	private JTextField tfDienThoaiCha;
-	private JTextField tfHoTenMe;
-	private JTextField tfDienThoai;
-	private JTextField tfNgheNghiepMe;
+	private PlaceHolderTextField ptfHoTenMe;
+	private JTextField tfDienThoaiMe;
+	private PlaceHolderTextField ptfNgheNghiepMe;
+	private JComboBox<String> cbChonKhoiHoc;
+	private JComboBox<String> cbChonLopHoc;
+	private JComboBox<String> cbChonNamHoc;
+	private JComboBox<String> cbChonTrangThai;
+	private JSpinner spNamSinhCha;
+	private JSpinner spNamSinhMe;
 	private JButton btCapNhatHinh;
 	private JCheckBox cbDTUT;
 	private JRadioButton rbNam;
@@ -76,6 +90,7 @@ public class ThemHocSinh {
 
 	private void initialize() {
 		createFrame();
+		createCbDTUT();
 		createLbCMND();
 		createLbDanToc();
 		createLbDiaChi();
@@ -88,19 +103,39 @@ public class ThemHocSinh {
 		createLbTonGiao();
 		createLbTrangThai();
 		createLbAnh();
+		createBtCapNhatHinh();
 		createTfCMND();
 		createTfDanToc();
 		createTfDiaChi();
-		createTfDienThoai();
+		createTfDienThoaiMe();
 		createTfDienThoaiCha();
-		createTfEmail();
+		createPtfEmail();
 		createTfHoTen();
-		createTfHoTenCha();
-		createTfHoTenMe();
+		createPtfHoTenCha();
+		createPtfHoTenMe();
+		createPtfTenDangNhap();
+		createPtfSoDienThoai();
+		createPtfNgayVaoHoc();
+		createPtfSoDienThoai();
+		createPtfTonGiao();
+		createPtfNgaySinh();
+		createPtfNgheNghiepCha();
+		createPtfNgheNghiepMe();
+		createPtfSoDienThoai();
+		createPtfTenDangNhap();
+		createCbChonKhoiHoc();
+		createCbChonLopHoc();
+		createCbChonNamHoc();
+		createCbChonTrangThai();
 		createPfMatKhau();
 		createCbDTUT();
 		createRbNam();
 		createRbNu();
+		createSpNamSinhCha();
+		createSpNamSinhMe();
+		createPnChinh();
+		createPnDuoi();
+		createPnTren();
 	}
 	
 	
@@ -111,45 +146,144 @@ public class ThemHocSinh {
 
 	public void createFrame() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 800, 500);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	public void createGUI(){
 		pnChinh.add(pnTren, BorderLayout.CENTER);
-		pnChinh.add(pnTren, BorderLayout.SOUTH);
+		pnChinh.add(pnDuoi, BorderLayout.SOUTH);
 		
 		GridBagConstraints gbc=new GridBagConstraints();
-		gbc.fill=GridBagConstraints.HORIZONTAL;
+		gbc.fill=GridBagConstraints.BOTH;
+		gbc.insets=new Insets(5, 5, 5, 5);
 		gbc.gridx=0;
 		gbc.gridy=0;
+		gbc.weightx=1;
 		pnTren.add(lbHoTen, gbc);
-		
 		gbc.gridx=1;
 		pnTren.add(tfHoTen, gbc);
-		
 		gbc.gridx=2;
-		pnTren.add(tfEmail, gbc);
-		
+		pnTren.add(ptfEmail, gbc);
 		gbc.gridx=3;
-		pnTren.add(tfTenDangNhap, gbc);
+		pnTren.add(ptfTenDangNhap, gbc);
+		gbc.gridx=4;
+		gbc.gridheight=5;
+		gbc.weightx=0;
+		pnTren.add(lbAnh, gbc);
+		gbc.gridheight=1;
+		
 		
 		gbc.gridx=0;
 		gbc.gridy=1;
 		pnTren.add(lbCMND, gbc);
-		
 		gbc.gridx=1;
+		gbc.weightx=1;
 		pnTren.add(tfCMND, gbc);
-		
 		gbc.gridx=2;
-		pnTren.add(tfSoDienThoai, gbc);
-		
+		pnTren.add(ptfSoDienThoai, gbc);
 		gbc.gridx=3;
 		pnTren.add(pfMatKhau, gbc);
 		
 		gbc.gridx=0;
+		gbc.gridy=2;
+		pnTren.add(lbNgaySinh, gbc);
+		gbc.gridx=1;
+		pnTren.add(ptfNgaySinh, gbc);
+		gbc.gridx=2;
+		pnTren.add(cbChonKhoiHoc,gbc);
+		gbc.gridx=3;
+		pnTren.add(cbDTUT, gbc);
+		
+		ButtonGroup bg = new ButtonGroup();
+		bg.add(rbNam);
+		bg.add(rbNu);
+		gbc.gridx=0;
+		gbc.gridy=3;
+		pnTren.add(lbDanToc, gbc);
+		gbc.gridx=1;
+		pnTren.add(tfDanToc, gbc);
+		gbc.gridx=2;
+		pnTren.add(cbChonLopHoc, gbc);
+		gbc.gridx=3;
+		pnTren.add(rbNam, gbc);
+		
+		gbc.gridx=0;
+		gbc.gridy=4;
+		pnTren.add(lbTonGiao, gbc);
+		gbc.gridx=1;
+		pnTren.add(ptfTonGiao, gbc);
+		gbc.gridx=2;
+		pnTren.add(cbChonNamHoc,gbc);
+		gbc.gridx=3;
+		pnTren.add(rbNu, gbc);
+		
+		gbc.gridx=0;
+		gbc.gridy=5;
+		pnTren.add(lbTrangThai, gbc);
+		gbc.gridx=1;
+		pnTren.add(cbChonTrangThai, gbc);
+		gbc.gridx=2;
+		pnTren.add(ptfNgayVaoHoc, gbc);
+		
+		gbc.gridx=0;
+		gbc.gridy=6;
+		pnTren.add(lbDiaChi, gbc);
+		gbc.gridx=1;
+		gbc.gridwidth=3;
+		pnTren.add(tfDiaChi, gbc);
+		gbc.gridx=4;
+		gbc.gridwidth=1;
+		pnTren.add(btCapNhatHinh, gbc);
+		
+		GridBagConstraints gbc1=new GridBagConstraints();
+		gbc1.fill=GridBagConstraints.HORIZONTAL;
+		gbc1.insets=new Insets(5, 10, 5, 5);
+		gbc1.gridx=0;
+		gbc1.gridy=0;
+		gbc1.weightx=1;
+		pnDuoi.add(ptfHoTenCha, gbc1);
+		gbc1.gridx=1;
+		gbc.weightx=0;
+		gbc.anchor=GridBagConstraints.EAST;
+		pnDuoi.add(lbNamSinhCha, gbc1);
+		gbc1.gridx=2;
+		gbc1.weightx=1;
+		pnDuoi.add(spNamSinhCha, gbc1);
+		gbc1.gridx=3;
+		gbc.weightx=0;
+		pnDuoi.add(lbDienThoaiCha, gbc1);
+		gbc1.gridx=4;
+		gbc.weightx=1;
+		pnDuoi.add(tfDienThoaiCha, gbc1);
+		
+		gbc1.gridx=0;
+		gbc1.gridy=1;
+		gbc1.gridwidth=5;
+		pnDuoi.add(ptfNgheNghiepMe, gbc1);
+		
+		gbc1.gridwidth=1;
+		gbc1.gridy=2;
+		pnDuoi.add(ptfHoTenMe, gbc1);
+		gbc1.gridx=1;
+		pnDuoi.add(lbNamSinhMe, gbc1);
+		gbc1.gridx=2;
+		pnDuoi.add(spNamSinhMe, gbc1);
+		gbc1.gridx=3;
+		pnDuoi.add(lbDienThoaiMe, gbc1);
+		gbc1.gridx=4;
+		pnDuoi.add(tfDienThoaiMe, gbc1);
+		
+		gbc1.gridx=0;
+		gbc1.gridy=3;
+		gbc1.gridwidth=5;
+		pnDuoi.add(ptfNgheNghiepCha, gbc1);
+		
+		frame.add(pnChinh);
 	}
+	
+	
 
 	public JLabel getLbHoTen() {
 		return lbHoTen;
@@ -172,7 +306,7 @@ public class ThemHocSinh {
 	}
 
 	public void createLbNgaySinh() {
-		this.lbNgaySinh = new JLabel("Dân tộc");
+		this.lbNgaySinh = new JLabel("Ngày sinh");
 	}
 
 	public JLabel getLbDanToc() {
@@ -257,20 +391,20 @@ public class ThemHocSinh {
 		this.tfHoTen = new JTextField();
 	}
 
-	public JTextField getTfEmail() {
-		return tfEmail;
+	public JTextField getPtfEmail() {
+		return ptfEmail;
 	}
 
-	public void createTfEmail() {
-		this.tfEmail = new JTextField();
+	public void createPtfEmail() {
+		this.ptfEmail = new PlaceHolderTextField("Email", 12);
 	}
 
-	public JTextField getTfTenDangNhap() {
-		return tfTenDangNhap;
+	public PlaceHolderTextField getPtfTenDangNhap() {
+		return ptfTenDangNhap;
 	}
 
-	public void createTfTenDangNhap() {
-		this.tfTenDangNhap = new JTextField();
+	public void createPtfTenDangNhap() {
+		this.ptfTenDangNhap = new PlaceHolderTextField("Tên đăng nhập", 12);
 	}
 
 	public JTextField getTfCMND() {
@@ -281,12 +415,12 @@ public class ThemHocSinh {
 		this.tfCMND = new JTextField();
 	}
 
-	public JTextField getTfSoDienThoai() {
-		return tfSoDienThoai;
+	public PlaceHolderTextField getPtfSoDienThoai() {
+		return ptfSoDienThoai;
 	}
 
-	public void createTfSoDienThoai() {
-		this.tfSoDienThoai = new JTextField();
+	public void createPtfSoDienThoai() {
+		this.ptfSoDienThoai = new PlaceHolderTextField("Số điện thoại", 12);
 	}
 
 	public JTextField getPfMatKhau() {
@@ -295,14 +429,15 @@ public class ThemHocSinh {
 
 	public void createPfMatKhau() {
 		this.pfMatKhau = new JPasswordField();
+		pfMatKhau.setEchoChar('*');
 	}
 
-	public JTextField getTfNgaySinh() {
-		return tfNgaySinh;
+	public PlaceHolderTextField getPtfNgaySinh() {
+		return ptfNgaySinh;
 	}
 
-	public void createTfNgaySinh() {
-		this.tfNgaySinh = new JTextField();
+	public void createPtfNgaySinh() {
+		this.ptfNgaySinh = new PlaceHolderTextField("Date picker",12);
 	}
 
 	public JTextField getTfDanToc() {
@@ -313,20 +448,20 @@ public class ThemHocSinh {
 		this.tfDanToc = new JTextField();
 	}
 
-	public JTextField getTfTonGiao() {
-		return tfTonGiao;
+	public PlaceHolderTextField getPtfTonGiao() {
+		return ptfTonGiao;
 	}
 
-	public void createTfTonGiao() {
-		this.tfTonGiao = new JTextField();
+	public void createPtfTonGiao() {
+		this.ptfTonGiao = new PlaceHolderTextField("Tôn giáo",12);
 	}
 
-	public JTextField getTfNgayVaoHoc() {
-		return tfNgayVaoHoc;
+	public PlaceHolderTextField getPtfNgayVaoHoc() {
+		return ptfNgayVaoHoc;
 	}
 
-	public void createTfNgayVaoHoc() {
-		this.tfNgayVaoHoc = new JTextField();
+	public void createPtfNgayVaoHoc() {
+		this.ptfNgayVaoHoc = new PlaceHolderTextField("Ngày vào học",12);
 	}
 
 	public JTextField getTfDiaChi() {
@@ -337,20 +472,20 @@ public class ThemHocSinh {
 		this.tfDiaChi = new JTextField();
 	}
 
-	public JTextField getTfHoTenCha() {
-		return tfHoTenCha;
+	public PlaceHolderTextField getPtfHoTenCha() {
+		return ptfHoTenCha;
 	}
 
-	public void createTfHoTenCha() {
-		this.tfHoTenCha = new JTextField();
+	public void createPtfHoTenCha() {
+		this.ptfHoTenCha = new PlaceHolderTextField("Họ tên cha", 12);
 	}
 
-	public JTextField getTfNamSinhCha() {
-		return tfNamSinhCha;
+	public PlaceHolderTextField getPtfNgheNghiepCha() {
+		return ptfNgheNghiepCha;
 	}
 
-	public void createTfNamSinhCha() {
-		this.tfNamSinhCha = new JTextField();
+	public void createPtfNgheNghiepCha() {
+		this.ptfNgheNghiepCha = new PlaceHolderTextField("Nghề nghiệp Cha",12);
 	}
 
 	public JTextField getTfDienThoaiCha() {
@@ -361,28 +496,28 @@ public class ThemHocSinh {
 		this.tfDienThoaiCha = new JTextField();
 	}
 
-	public JTextField getTfHoTenMe() {
-		return tfHoTenMe;
+	public PlaceHolderTextField getPtfHoTenMe() {
+		return ptfHoTenMe;
 	}
 
-	public void createTfHoTenMe() {
-		this.tfHoTenMe = new JTextField();
+	public void createPtfHoTenMe() {
+		this.ptfHoTenMe = new PlaceHolderTextField("Họ tên mẹ",12);
 	}
 
-	public JTextField getTfDienThoai() {
-		return tfDienThoai;
+	public JTextField getfDienThoaiMe() {
+		return tfDienThoaiMe;
 	}
 
-	public void createTfDienThoai() {
-		this.tfDienThoai = new JTextField();
+	public void createTfDienThoaiMe() {
+		this.tfDienThoaiMe = new JTextField();
 	}
 
-	public JTextField getTfNgheNghiepMe() {
-		return tfNgheNghiepMe;
+	public PlaceHolderTextField getPtfNgheNghiepMe() {
+		return ptfNgheNghiepMe;
 	}
 
-	public void createTfNgheNghiepMe() {
-		this.tfNgheNghiepMe = new JTextField();
+	public void createPtfNgheNghiepMe() {
+		this.ptfNgheNghiepMe = new PlaceHolderTextField("Nghề nghiệp mẹ", 12);
 	}
 	
 	
@@ -435,6 +570,7 @@ public class ThemHocSinh {
 	public void createPnTren() {
 		this.pnTren = new JPanel();
 		pnTren.setLayout(new GridBagLayout());
+		pnTren.setBorder(BorderFactory.createTitledBorder("Thông tin học sinh"));
 	}
 
 	public JPanel getPnDuoi() {
@@ -444,7 +580,94 @@ public class ThemHocSinh {
 	public void createPnDuoi() {
 		this.pnDuoi = new JPanel();
 		pnDuoi.setLayout(new GridBagLayout());
+		pnDuoi.setBorder(BorderFactory.createTitledBorder("Thông tin học sinh"));
 	}
+
+	public JSpinner getSpNamSinhCha() {
+		return spNamSinhCha;
+	}
+
+	public void createSpNamSinhCha() {
+		SpinnerModel model =
+		        new SpinnerNumberModel(1960, 
+		                               1960 - 100, 
+		                               1960 + 100, 
+		                               1);                
+		this.spNamSinhCha = new JSpinner(model);
+	}
+
+	public JSpinner getSpNamSinhMe() {
+		return spNamSinhMe;
+	}
+
+	public void createSpNamSinhMe() {
+		SpinnerModel model =
+		        new SpinnerNumberModel(1960, 
+		                               1960 - 100, 
+		                               1960 + 100, 
+		                               1);            
+		this.spNamSinhMe = new JSpinner(model);
+	}
+
+	public JComboBox<String> getCbChonKhoiHoc() {
+		return cbChonKhoiHoc;
+	}
+
+	public void createCbChonKhoiHoc() {
+		DefaultComboBoxModel<String> model;
+		model = new DefaultComboBoxModel<String>();
+		model.addElement("Khối 10");
+		model.addElement("Khối 10");
+		model.addElement("Khối 10");
+		model.addElement("Khối 10");
+		model.addElement("Khối 10");
+		this.cbChonKhoiHoc = new JComboBox<String>(model);
+	}
+
+	public JComboBox<String> getCbChonLopHoc() {
+		return cbChonLopHoc;
+	}
+
+	public void createCbChonLopHoc() {
+		DefaultComboBoxModel<String> model;
+		model = new DefaultComboBoxModel<String>();
+		model.addElement("Khối 10");
+		model.addElement("Khối 10");
+		model.addElement("Khối 10");
+		model.addElement("Khối 10");
+		model.addElement("Khối 10");
+		this.cbChonLopHoc = new JComboBox<String>(model);
+	}
+
+	public JComboBox<String> getCbChonNamHoc() {
+		return cbChonNamHoc;
+	}
+
+	public void createCbChonNamHoc() {
+		DefaultComboBoxModel<String> model;
+		model = new DefaultComboBoxModel<String>();
+		model.addElement("Khối 10");
+		model.addElement("Khối 10");
+		model.addElement("Khối 10");
+		model.addElement("Khối 10");
+		model.addElement("Khối 10");
+		this.cbChonNamHoc = new JComboBox<String>(model);
+	}
+
+	public JComboBox<String> getCbChonTrangThai() {
+		return cbChonTrangThai;
+	}
+
+	public void createCbChonTrangThai() {
+		DefaultComboBoxModel<String> model;
+		model = new DefaultComboBoxModel<String>();
+		model.addElement("Khối 10");
+		model.addElement("Khối 10");
+		this.cbChonTrangThai = new JComboBox<String>(model);
+	}
+	
+	
+	
 	
 
 }
