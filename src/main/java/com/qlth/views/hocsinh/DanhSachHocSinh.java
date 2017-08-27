@@ -7,12 +7,15 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.util.ArrayList;
+import java.util.Vector;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -20,7 +23,11 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import com.qlth.bus.GiaoVienLopHocBus;
+import com.qlth.bus.HocSinhBus;
 import com.qlth.factory.PlaceHolderTextField;
+import com.qlth.model.HocSinh;
+import com.qlth.model.LopHoc;
 
 public class DanhSachHocSinh {
 
@@ -39,6 +46,8 @@ public class DanhSachHocSinh {
 	private JPanel pnTimKiemPhai;
 	private JPanel pnCongCu;
 	private JPanel pnCongCuPhai;
+	private DefaultTableModel model;
+	private HocSinhBus hsBus;
 
 	public DanhSachHocSinh() {
 		initialize();
@@ -63,7 +72,7 @@ public class DanhSachHocSinh {
 	}
 
 	public JPanel createPnDSHS() {
-		lbTieuDe.setBorder(new EmptyBorder(10, 0, 50, 0));
+		lbTieuDe.setBorder(new EmptyBorder(10, 0, 20, 0));
 		pnTieuDe.add(lbTieuDe);
 
 		JScrollPane sc = new JScrollPane(tbDanhSachHocSinh);
@@ -105,38 +114,77 @@ public class DanhSachHocSinh {
 
 	public void createTbDanhSachHocSinh() {
 
-		DefaultTableModel model = new DefaultTableModel(
-				new Object[][] {
-						{ 1, "HS001", "caominhnhut", "Cao Minh Nhựt", "Nam", "14/04/1988", "09645454445",
-								"nguyencao@gmail.com", "Bến Tre" },
-						{ 2, "HS001", "caominhnhut", "Cao Minh Nhựt", "Nam", "14/04/1988", "094654654",
-								"nguyencao@gmail.com", "Bến Tre" },
-						{ 3, "HS001", "caominhnhut", "Cao Minh Nhựt", "Nam", "14/04/1988", "09645454445",
-								"nguyencao@gmail.com", "Bến Tre" },
-						{ 4, "HS001", "caominhnhut", "Cao Minh Nhựt", "Nam", "14/04/1988", "094654654",
-								"nguyencao@gmail.com", "Bến Tre" },
-						{ 5, "HS001", "caominhnhut", "Cao Minh Nhựt", "Nam", "14/04/1988", "09645454445",
-								"nguyencao@gmail.com", "Bến Tre" },
-						{ 6, "HS001", "caominhnhut", "Cao Minh Nhựt", "Nam", "14/04/1988", "094654654",
-								"nguyencao@gmail.com", "Bến Tre" },
-						{ 7, "HS001", "caominhnhut", "Cao Minh Nhựt", "Nam", "14/04/1988", "09645454445",
-								"nguyencao@gmail.com", "Bến Tre" },
-						{ 8, "HS001", "caominhnhut", "Cao Minh Nhựt", "Nam", "14/04/1988", "094654654",
-								"nguyencao@gmail.com", "Bến Tre" },
-						{ 9, "HS001", "caominhnhut", "Cao Minh Nhựt", "Nam", "14/04/1988", "09645454445",
-								"nguyencao@gmail.com", "Bến Tre" },
-						{ 10, "HS001", "caominhnhut", "Cao Minh Nhựt", "Nam", "14/04/1988", "094654654",
-								"nguyencao@gmail.com", "Bến Tre" },
-						{ 11, "HS001", "caominhnhut", "Cao Minh Nhựt", "Nam", "14/04/1988", "09645454445",
-								"nguyencao@gmail.com", "Bến Tre" },
-						{ 12, "HS001", "caominhnhut", "Cao Minh Nhựt", "Nam", "14/04/1988", "094654654",
-								"nguyencao@gmail.com", "Bến Tre" },
-						{ 13, "HS001", "caominhnhut", "Cao Minh Nhựt", "Nam", "14/04/1988", "09645454445",
-								"nguyencao@gmail.com", "Bến Tre" },
-						{ 14, "HS001", "caominhnhut", "Cao Minh Nhựt", "Nam", "14/04/1988", "094654654",
-								"nguyencao@gmail.com", "Bến Tre" } },
-				new Object[] { "STT", "MSHS", "Tên Đăng Nhập", "Họ Tên", "Giới Tính", "Ngày Sinh", "Điện Thoại",
-						"Email", "Địa Chỉ" });
+		// DefaultTableModel model = new DefaultTableModel(
+		// new Object[][] {
+		// { 1, "HS001", "caominhnhut", "Cao Minh Nhựt", "Nam", "14/04/1988",
+		// "09645454445",
+		// "nguyencao@gmail.com", "Bến Tre" },
+		// { 2, "HS001", "caominhnhut", "Cao Minh Nhựt", "Nam", "14/04/1988",
+		// "094654654",
+		// "nguyencao@gmail.com", "Bến Tre" },
+		// { 3, "HS001", "caominhnhut", "Cao Minh Nhựt", "Nam", "14/04/1988",
+		// "09645454445",
+		// "nguyencao@gmail.com", "Bến Tre" },
+		// { 4, "HS001", "caominhnhut", "Cao Minh Nhựt", "Nam", "14/04/1988",
+		// "094654654",
+		// "nguyencao@gmail.com", "Bến Tre" },
+		// { 5, "HS001", "caominhnhut", "Cao Minh Nhựt", "Nam", "14/04/1988",
+		// "09645454445",
+		// "nguyencao@gmail.com", "Bến Tre" },
+		// { 6, "HS001", "caominhnhut", "Cao Minh Nhựt", "Nam", "14/04/1988",
+		// "094654654",
+		// "nguyencao@gmail.com", "Bến Tre" },
+		// { 7, "HS001", "caominhnhut", "Cao Minh Nhựt", "Nam", "14/04/1988",
+		// "09645454445",
+		// "nguyencao@gmail.com", "Bến Tre" },
+		// { 8, "HS001", "caominhnhut", "Cao Minh Nhựt", "Nam", "14/04/1988",
+		// "094654654",
+		// "nguyencao@gmail.com", "Bến Tre" },
+		// { 9, "HS001", "caominhnhut", "Cao Minh Nhựt", "Nam", "14/04/1988",
+		// "09645454445",
+		// "nguyencao@gmail.com", "Bến Tre" },
+		// { 10, "HS001", "caominhnhut", "Cao Minh Nhựt", "Nam", "14/04/1988",
+		// "094654654",
+		// "nguyencao@gmail.com", "Bến Tre" },
+		// { 11, "HS001", "caominhnhut", "Cao Minh Nhựt", "Nam", "14/04/1988",
+		// "09645454445",
+		// "nguyencao@gmail.com", "Bến Tre" },
+		// { 12, "HS001", "caominhnhut", "Cao Minh Nhựt", "Nam", "14/04/1988",
+		// "094654654",
+		// "nguyencao@gmail.com", "Bến Tre" },
+		// { 13, "HS001", "caominhnhut", "Cao Minh Nhựt", "Nam", "14/04/1988",
+		// "09645454445",
+		// "nguyencao@gmail.com", "Bến Tre" },
+		// { 14, "HS001", "caominhnhut", "Cao Minh Nhựt", "Nam", "14/04/1988",
+		// "094654654",
+		// "nguyencao@gmail.com", "Bến Tre" } },
+		// new Object[] { "STT", "MSHS", "Tên Đăng Nhập", "Họ Tên", "Giới Tính",
+		// "Ngày Sinh", "Điện Thoại",
+		// "Email", "Địa Chỉ" });
+		String columnName[] = { "STT", "MSHS", "Tên Đăng Nhập", "Họ Tên", "Giới Tính", "Ngày Sinh", "Điện Thoại",
+				"Địa Chỉ" };
+		model = new DefaultTableModel(columnName, 0);
+		hsBus = new HocSinhBus();
+		ArrayList<HocSinh> arr = hsBus.getDanhSachHocSinh();
+		if (arr.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Danh sách trống!");
+		} else {
+			Vector<String> vector;
+			int i = 0;
+			for (HocSinh hs : arr) {
+				vector = new Vector<String>();
+				vector.add(String.valueOf(i));
+				vector.add(hs.getMaND());
+				vector.add(hs.getTenDN());
+				vector.add(hs.getHoten());
+				vector.add(hs.getGioitinh());
+				vector.add(hs.getNgaysinh().toString());
+				vector.add(hs.getSdt());
+				vector.add(hs.getDiachi());
+				model.addRow(vector);
+				i++;
+			}
+		}
 		tbDanhSachHocSinh = new JTable(model);
 	}
 
@@ -149,7 +197,7 @@ public class DanhSachHocSinh {
 		lbTieuDe.setHorizontalAlignment(SwingConstants.CENTER);
 		lbTieuDe.setForeground(Color.BLUE);
 		lbTieuDe.setFont(new Font("SansSerif", Font.BOLD, 25));
-		lbTieuDe.setBorder(new EmptyBorder(10, 0, 50, 0));
+//		lbTieuDe.setBorder(new EmptyBorder(10, 0, 20, 0));
 	}
 
 	public JComboBox<String> getCbDanhSachLop() {
@@ -158,10 +206,16 @@ public class DanhSachHocSinh {
 
 	public void createCbDanhSachLop() {
 		DefaultComboBoxModel<String> model = new DefaultComboBoxModel<String>();
-		model.addElement("Lớp chủ nhiệm");
-		model.addElement("Nam II");
-		model.addElement("Nam III");
-		model.addElement("Nam IV");
+		GiaoVienLopHocBus gvlhBus=new GiaoVienLopHocBus();
+		ArrayList<String> arr=new ArrayList<String>();
+		arr=gvlhBus.getDanhSachTheoGVCN();
+		for(String st:arr){
+			model.addElement(st);
+		}
+//		model.addElement("Lớp chủ nhiệm");
+//		model.addElement("Nam II");
+//		model.addElement("Nam III");
+//		model.addElement("Nam IV");
 		this.cbDanhSachLop = new JComboBox<String>(model);
 	}
 
@@ -216,7 +270,7 @@ public class DanhSachHocSinh {
 	public void createPnDanhSach() {
 		pnDanhSach = new JPanel();
 		pnDanhSach.setLayout(new BorderLayout());
-		pnDanhSach.setBorder(new EmptyBorder(20, 20, 20, 20));
+		pnDanhSach.setBorder(new EmptyBorder(0, 0, 0, 0));
 	}
 
 	public JPanel getPnTieuDe() {

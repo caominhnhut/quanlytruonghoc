@@ -23,7 +23,6 @@ public class DataConnection {
 				JOptionPane.showMessageDialog(null, "Ket noi that bai. Vui long kiem tra lai !");
 			}
 		}
-		
 		return null;
 	}
 	
