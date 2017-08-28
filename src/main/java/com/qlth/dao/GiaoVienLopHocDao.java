@@ -15,7 +15,7 @@ public class GiaoVienLopHocDao {
 		ArrayList<String> arr=new ArrayList<String>();
 		ResultSet result=null;
 		try {
-			result=dc.createConnect().createStatement().executeQuery(query);
+			result=dc.Connect().createStatement().executeQuery(query);
 			while(result.next()){
 				arr.add(result.getString(1));
 			}

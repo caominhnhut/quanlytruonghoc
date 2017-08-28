@@ -18,7 +18,8 @@ public class Execution {
 					Execution ex=new Execution();
 					ManHinhDangNhap window = new ManHinhDangNhap();
 					window.createGUI();
-					ex.runMe("Nhut Nguyen");
+					window.getTfDangNhap().getText();
+					//ex.runMe("Nhut Nguyen");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -41,5 +42,4 @@ public class Execution {
 		logger.fatal("This is fatal : " + parameter);
 
 	}
-
 }

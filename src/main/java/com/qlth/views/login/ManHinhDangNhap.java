@@ -19,8 +19,10 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import com.qlth.controller.NguoiDungController;
 import com.qlth.factory.LinkButton;
 import com.qlth.factory.PlaceHolderTextField;
+import com.qlth.model.NguoiDung;
 import com.qlth.views.quanly.ManHinhQuanLy;
 
 public class ManHinhDangNhap implements ActionListener {
@@ -35,6 +37,7 @@ public class ManHinhDangNhap implements ActionListener {
 	private JCheckBox cbGhiNho;
 	private JButton btDangNhap;
 	private JButton btThoat;
+	private NguoiDungController nguoiDungController;
 
 	// public static void main(String[] args) {
 	// EventQueue.invokeLater(new Runnable() {
@@ -51,6 +54,7 @@ public class ManHinhDangNhap implements ActionListener {
 
 	public ManHinhDangNhap() {
 		initialize();
+		nguoiDungController = new NguoiDungController();
 	}
 
 	public void initialize() {
@@ -122,9 +126,18 @@ public class ManHinhDangNhap implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btDangNhap) {
+			String tenDN=tfDangNhap.getText();
+			String matKhau=pass.getText();
+			NguoiDung nguoiDung=new NguoiDung();
+			nguoiDung.setTenDN(tenDN);
+			nguoiDung.setMatkhau(matKhau);
+			nguoiDungController.login(nguoiDung);			
 			frame.dispose();
 			ManHinhQuanLy mhql = new ManHinhQuanLy();
 			mhql.showUI();
+		}
+		if(e.getSource() == btThoat){
+			System.exit(0);
 		}
 	}
 
@@ -196,6 +209,7 @@ public class ManHinhDangNhap implements ActionListener {
 		btThoat.setText("Thoát");
 		ImageIcon icon=layAnhTuResource("img\\Error-icon.png");
 		btThoat.setIcon(icon);
+		btThoat.addActionListener(this);
 	}
 	
 	public ImageIcon layAnhTuResource(String path) {

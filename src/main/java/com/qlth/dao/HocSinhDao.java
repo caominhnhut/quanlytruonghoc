@@ -16,7 +16,7 @@ public class HocSinhDao {
 		String query = "select * from nguoidung;";
 		ResultSet result = null;
 		try {
-			result = con.createConnect().createStatement().executeQuery(query);
+			result = con.Connect().createStatement().executeQuery(query);
 			HocSinh hs;
 			while (result.next()) {
 				hs = new HocSinh(result.getString(1), result.getString(2), result.getString(3), result.getString(4),

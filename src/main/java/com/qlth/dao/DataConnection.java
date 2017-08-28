@@ -2,7 +2,6 @@ package com.qlth.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
@@ -12,28 +11,33 @@ public class DataConnection {
 	protected String username = "root";
 	protected String password = "root";
 
-	public Connection createConnect() {
-		if (conn == null) {
-			// kiem tra driver
-			try {
-				Class.forName("com.mysql.jdbc.Driver");
-				try {
-					conn = DriverManager.getConnection(url, username, password);
-					return conn;
-				} catch (SQLException e) {
-					JOptionPane.showMessageDialog(null, "Ket noi that bai");
-				}
-			} catch (ClassNotFoundException e) {
-				JOptionPane.showMessageDialog(null, "Ket noi that bai!222");
+	protected Connection con;
+	
+	public Connection Connect(){
+		if(con == null){
+			final String url="jdbc:mysql://localhost:3306/quanlytruonghoc?useSSL=true";
+			final String username="root";
+			final String password="root";
+			
+			try{
+				
+				con=DriverManager.getConnection(url,username,password);
+				return con;
+			}catch(Exception e){
+				JOptionPane.showMessageDialog(null, "Ket noi that bai. Vui long kiem tra lai !");
 			}
 		}
-		return conn;
+		return null;
 	}
-
-	public void disConnect() throws SQLException {
-		if (conn != null || !conn.isClosed()) {
-			conn.close();
-			conn = null;
+	
+	public void Disconnect(){
+		if(con!=null){
+			try{
+				con.close();
+				con=null;
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 		}
 	}
 }
