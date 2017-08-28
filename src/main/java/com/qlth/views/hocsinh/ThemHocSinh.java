@@ -2,6 +2,7 @@ package com.qlth.views.hocsinh;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -76,6 +77,10 @@ public class ThemHocSinh implements ActionListener{
 	private JPanel pnChinh;
 	private JPanel pnTren;
 	private JPanel pnDuoi;
+	private JPanel pnChucNang;
+	private JButton btnLuu;
+	private JButton btnThoat;
+	
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -142,6 +147,9 @@ public class ThemHocSinh implements ActionListener{
 		createPnChinh();
 		createPnDuoi();
 		createPnTren();
+		createBtnLuu();
+		createBtnThoat();
+		createPnChucNang();
 	}
 	
 	
@@ -159,8 +167,9 @@ public class ThemHocSinh implements ActionListener{
 	}
 	
 	public void createGUI(){
-		pnChinh.add(pnTren, BorderLayout.CENTER);
-		pnChinh.add(pnDuoi, BorderLayout.SOUTH);
+		pnChinh.add(pnTren, BorderLayout.NORTH);
+		pnChinh.add(pnDuoi, BorderLayout.CENTER);
+		pnChinh.add(pnChucNang, BorderLayout.SOUTH);
 		
 		GridBagConstraints gbc=new GridBagConstraints();
 		gbc.fill=GridBagConstraints.BOTH;
@@ -287,6 +296,8 @@ public class ThemHocSinh implements ActionListener{
 		gbc1.gridwidth=5;
 		pnDuoi.add(ptfNgheNghiepCha, gbc1);
 		
+		pnChucNang.add(btnLuu);
+		pnChucNang.add(btnThoat);
 		frame.add(pnChinh);
 	}
 	
@@ -675,6 +686,35 @@ public class ThemHocSinh implements ActionListener{
 		model.addElement("Khối 10");
 		model.addElement("Khối 10");
 		this.cbChonTrangThai = new JComboBox<String>(model);
+	}
+	
+	
+
+	public JButton getBtnLuu() {
+		return btnLuu;
+	}
+
+	public void createBtnLuu() {
+		this.btnLuu = new JButton("Lưu");
+	}
+
+	public JButton getBtnThoat() {
+		return btnThoat;
+	}
+
+	public void createBtnThoat() {
+		this.btnThoat = new JButton("Thoát");
+	}
+	
+	
+
+	public JPanel getPnChucNang() {
+		return pnChucNang;
+	}
+
+	public void createPnChucNang() {
+		this.pnChucNang = new JPanel();
+		pnChucNang.setLayout(new FlowLayout(FlowLayout.RIGHT));
 	}
 
 	public void actionPerformed(ActionEvent e) {
