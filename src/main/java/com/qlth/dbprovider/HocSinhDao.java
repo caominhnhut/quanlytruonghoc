@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.qlth.dao.DataConnection;
 import com.qlth.model.HocSinh;
 
 public class HocSinhDao {

@@ -1,4 +1,4 @@
-package com.qlth.dao;
+package com.qlth.dbprovider;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -8,26 +8,27 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-
 public class DataConnection {
-	protected Connection conn = null;
-	private static final Log logger=LogFactory.getLog(DataConnection.class);
+	
+	private static final Log logger = LogFactory.getLog(DataConnection.class);
+	
+	private Connection conn = null;
+
 	public Connection createConnect() {
 		try {
-			InputStream input=getClass().getClassLoader().getResourceAsStream("db.properties");
-			Properties pro=new Properties();
+			InputStream input = getClass().getClassLoader().getResourceAsStream("db.properties");
+			Properties pro = new Properties();
 			pro.load(input);
-			String url=pro.getProperty("url");
-			String username=pro.getProperty("username");
-			String password=pro.getProperty("password");
+			String url = pro.getProperty("url");
+			String username = pro.getProperty("username");
+			String password = pro.getProperty("password");
 			try {
-				logger.info("Connecting to db with connection string: "+url);
+				logger.info("Connecting to db with connection string: " + url);
 				DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-				conn=DriverManager.getConnection(url,username,password);
+				conn = DriverManager.getConnection(url, username, password);
 				logger.info("Connected to db");
 			} catch (SQLException e) {
 				logger.error(e.getMessage());
@@ -39,7 +40,7 @@ public class DataConnection {
 		}
 		return conn;
 	}
-	
+
 	public void disConnect() throws SQLException {
 		if (conn != null || !conn.isClosed()) {
 			conn.close();
@@ -47,5 +48,5 @@ public class DataConnection {
 			logger.info("Disconnected");
 		}
 	}
-	
+
 }

@@ -1,13 +1,13 @@
 package com.qlth.bus.impl;
 
-import com.qlth.bus.NguoiDungBUS;
-import com.qlth.dao.NguoiDungDAO;
+import com.qlth.bus.NguoiDungBus;
+import com.qlth.dao.NguoiDungDao;
 import com.qlth.dao.impl.NguoiDungDaoImpl;
 import com.qlth.model.NguoiDung;
 
-public class NguoiDungBusImpl implements NguoiDungBUS{
+public class NguoiDungBusImpl implements NguoiDungBus{
 
-	private NguoiDungDAO nguoiDungDao = new NguoiDungDaoImpl();
+	private NguoiDungDao nguoiDungDao = new NguoiDungDaoImpl();
 	
 	public Boolean timNguoiDung(NguoiDung nguoiDung) {
 		return nguoiDungDao.timNguoiDung(nguoiDung);

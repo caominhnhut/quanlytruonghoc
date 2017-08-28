@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import com.qlth.bus.NguoiDungBUS;
+import com.qlth.bus.NguoiDungBus;
 import com.qlth.bus.impl.NguoiDungBusImpl;
 import com.qlth.factory.LinkButton;
 import com.qlth.factory.PlaceHolderTextField;
@@ -39,7 +39,7 @@ public class ManHinhDangNhap implements ActionListener {
 	private JCheckBox cbGhiNho;
 	private JButton btDangNhap;
 	private JButton btThoat;
-	private NguoiDungBUS nguoiDungBus;
+	private NguoiDungBus nguoiDungBus;
 
 	// public static void main(String[] args) {
 	// EventQueue.invokeLater(new Runnable() {

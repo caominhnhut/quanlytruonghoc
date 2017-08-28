@@ -1,8 +1,8 @@
-package com.qlth.bus;
+package com.qlth.dao;
 
 import com.qlth.model.NguoiDung;
 
-public interface NguoiDungBUS {
-	
+public interface NguoiDungDao {
+
 	public Boolean timNguoiDung(NguoiDung nguoiDung);
 }

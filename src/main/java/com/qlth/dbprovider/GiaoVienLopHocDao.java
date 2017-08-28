@@ -5,12 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
-
 import org.apache.commons.logging.Log;
-
-import com.mysql.jdbc.log.LogFactory;
-import com.qlth.dao.DataConnection;
 
 
 public class GiaoVienLopHocDao {
