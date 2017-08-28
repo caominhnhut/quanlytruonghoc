@@ -18,7 +18,6 @@ public class Execution {
 					Execution ex=new Execution();
 					ManHinhDangNhap window = new ManHinhDangNhap();
 					window.createGUI();
-					window.getTfDangNhap().getText();
 					//ex.runMe("Nhut Nguyen");
 				} catch (Exception e) {
 					e.printStackTrace();

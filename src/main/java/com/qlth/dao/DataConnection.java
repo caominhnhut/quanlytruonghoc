@@ -7,9 +7,9 @@ import javax.swing.JOptionPane;
 
 public class DataConnection {
 
-	protected Connection con;
+	public Connection con;
 	
-	public Connection Connect(){
+	public Connection createConnect(){
 		if(con == null){
 			final String url="jdbc:mysql://localhost:3306/quanlytruonghoc?useSSL=true";
 			final String username="root";
@@ -26,7 +26,7 @@ public class DataConnection {
 		return null;
 	}
 	
-	public void Disconnect(){
+	public void disConnect(){
 		if(con!=null){
 			try{
 				con.close();
@@ -35,5 +35,10 @@ public class DataConnection {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public static void main(String[] args) {
+		DataConnection dc=new DataConnection();
+		dc.createConnect();
 	}
 }

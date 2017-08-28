@@ -24,6 +24,7 @@ import javax.swing.border.TitledBorder;
 import com.qlth.constant.Constant;
 
 import com.qlth.views.hocsinh.DanhSachHocSinh;
+import com.qlth.views.login.ManHinhDangNhap;
 
 @SuppressWarnings("serial")
 public class ManHinhQuanLy extends JFrame implements ActionListener {
@@ -171,7 +172,7 @@ public class ManHinhQuanLy extends JFrame implements ActionListener {
 		this.createMnFile();
 		this.createMnView();
 		this.createMnBar();
-		
+
 	}
 
 	public ImageIcon createIconFromResource(String path) {
@@ -319,6 +320,7 @@ public class ManHinhQuanLy extends JFrame implements ActionListener {
 	public void createCard() {
 		this.card = new CardLayout();
 	}
+
 	public JMenu getMnFile() {
 		return mnFile;
 	}
@@ -335,25 +337,31 @@ public class ManHinhQuanLy extends JFrame implements ActionListener {
 	public void createMnView() {
 		this.mnView = new JMenu("View");
 	}
-	
+
 	public JMenuBar createMnBar() {
 		this.mnBar = new JMenuBar();
 		this.mnBar.add(mnFile);
 		this.mnBar.add(mnView);
 		return this.mnBar;
 	}
-	
+
 	public JMenuItem getMnItemLogout() {
 		return mnItemLogout;
 	}
 
 	public void createMnItemLogout() {
 		this.mnItemLogout = new JMenuItem("Logout");
+		this.mnItemLogout.addActionListener(this);
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btStudent) {
 			card.show(pnView, Constant.MAN_HINH_DSHS);
+		}
+		if (e.getSource() == mnItemLogout) {
+			dispose();
+			ManHinhDangNhap mhdn = new ManHinhDangNhap();
+			mhdn.createGUI();
 		}
 	}
 }
