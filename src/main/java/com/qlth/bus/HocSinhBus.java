@@ -1,8 +1,9 @@
 package com.qlth.bus;
 
+
 import java.util.ArrayList;
 
-import com.qlth.dao.HocSinhDao;
+import com.qlth.dbprovider.HocSinhDao;
 import com.qlth.model.HocSinh;
 
 public class HocSinhBus {

@@ -1,22 +1,29 @@
-package com.qlth.dao;
+package com.qlth.dbprovider;
 
+import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
+import com.qlth.dao.DataConnection;
 import com.qlth.model.HocSinh;
 
 public class HocSinhDao {
 	private DataConnection con = new DataConnection();
+	private static final Log logger = LogFactory.getLog(HocSinhDao.class);
 
 	public ArrayList<HocSinh> getDanhSachHocSinh() {
 		ArrayList<HocSinh> arr = new ArrayList<HocSinh>();
-		String query = "select * from nguoidung;";
-		ResultSet result = null;
+		String query = "{CALL getHocSinh()}";
 		try {
-			result = con.createConnect().createStatement().executeQuery(query);
+			CallableStatement st = con.createConnect().prepareCall(query);
+			ResultSet result = null;
+			logger.info("Querying data in nguoidung table");
+			result = st.executeQuery();
+			logger.info("Queried");
 			HocSinh hs;
 			while (result.next()) {
 				hs = new HocSinh(result.getString(1), result.getString(2), result.getString(3), result.getString(4),
@@ -28,9 +35,10 @@ public class HocSinhDao {
 			}
 			return arr;
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "Lay du lieu that bai!");
+			logger.error(e.getMessage());
 			return null;
 		}
+
 	}
 
 }

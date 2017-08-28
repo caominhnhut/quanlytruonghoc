@@ -9,7 +9,7 @@ import com.qlth.views.login.ManHinhDangNhap;
 
 public class Execution {
 
-	private static final Log logger = LogFactory.getLog(Execution.class);
+	public static Log logger = LogFactory.getLog(Execution.class);
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -26,7 +26,7 @@ public class Execution {
 		});
 	}
 
-	private void runMe(String parameter) {
+	public void runMe(String parameter) {
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("This is debug : " + parameter);

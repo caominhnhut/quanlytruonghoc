@@ -254,3 +254,25 @@ insert into giaovien_chunhiem(mand,malop,nienkhoa) values('GV001','102','2015-20
 select *
 from giaovien_chunhiem gvcn join lophoc lh on gvcn.malop=lh.malop
 where gvcn.mand='GV001';
+
+/*insert data into hocsinh*/
+insert into hocsinh(mand,doi_tuong_uu_tien) values('HS001','Khong');
+insert into hocsinh(mand,doi_tuong_uu_tien) values('HS002','Khong');
+insert into hocsinh(mand,doi_tuong_uu_tien) values('HS003','Nguoi dan toc');
+insert into hocsinh(mand,doi_tuong_uu_tien) values('HS004','Con thuong binh');
+insert into hocsinh(mand,doi_tuong_uu_tien) values('HS005','Ho ngheo');
+
+select* from hocsinh;
+
+/*insert data into hocsinh_lop*/
+insert into hocsinh_lop(mand,malop,nienkhoa,ngay_nhap_hoc) values('HS001','101','2014-2015','2014-08-15');
+insert into hocsinh_lop(mand,malop,nienkhoa,ngay_nhap_hoc) values('HS002','102','2014-2015','2014-08-15');
+insert into hocsinh_lop(mand,malop,nienkhoa,ngay_nhap_hoc) values('HS003','101','2014-2015','2014-08-15');
+insert into hocsinh_lop(mand,malop,nienkhoa,ngay_nhap_hoc) values('HS004','101','2014-2015','2014-08-15');
+insert into hocsinh_lop(mand,malop,nienkhoa,ngay_nhap_hoc) values('HS005','101','2014-2015','2014-08-15');
+
+select * from hocsinh_lop;
+
+
+
+

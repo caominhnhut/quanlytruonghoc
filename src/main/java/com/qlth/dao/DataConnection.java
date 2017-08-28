@@ -1,39 +1,51 @@
 package com.qlth.dao;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
-import javax.swing.JOptionPane;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 
 public class DataConnection {
 	protected Connection conn = null;
-	protected String url = "jdbc:mysql://localhost:3306/quanlytruonghoc?useSSL=true";
-	protected String username = "root";
-	protected String password = "khongcopass";
-
+	private static final Log logger=LogFactory.getLog(DataConnection.class);
 	public Connection createConnect() {
-		if (conn == null) {
-			// kiem tra driver
+		try {
+			InputStream input=getClass().getClassLoader().getResourceAsStream("db.properties");
+			Properties pro=new Properties();
+			pro.load(input);
+			String url=pro.getProperty("url");
+			String username=pro.getProperty("username");
+			String password=pro.getProperty("password");
 			try {
-				Class.forName("com.mysql.jdbc.Driver");
-				try {
-					conn = DriverManager.getConnection(url, username, password);
-					return conn;
-				} catch (SQLException e) {
-					JOptionPane.showMessageDialog(null, "Ket noi that bai");
-				}
-			} catch (ClassNotFoundException e) {
-				JOptionPane.showMessageDialog(null, "Ket noi that bai!");
+				logger.info("Connecting to db with connection string: "+url);
+				DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+				conn=DriverManager.getConnection(url,username,password);
+				logger.info("Connected to db");
+			} catch (SQLException e) {
+				logger.error(e.getMessage());
 			}
+		} catch (FileNotFoundException e) {
+			logger.error(e.getMessage());
+		} catch (IOException e) {
+			logger.error(e.getMessage());
 		}
 		return conn;
 	}
-
+	
 	public void disConnect() throws SQLException {
 		if (conn != null || !conn.isClosed()) {
 			conn.close();
 			conn = null;
+			logger.info("Disconnected");
 		}
 	}
+	
 }

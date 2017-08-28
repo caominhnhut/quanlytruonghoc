@@ -208,7 +208,7 @@ public class DanhSachHocSinh {
 		DefaultComboBoxModel<String> model = new DefaultComboBoxModel<String>();
 		GiaoVienLopHocBus gvlhBus=new GiaoVienLopHocBus();
 		ArrayList<String> arr=new ArrayList<String>();
-		arr=gvlhBus.getDanhSachTheoGVCN();
+		arr=gvlhBus.getDanhSachTheoGVCN("GV001");
 		for(String st:arr){
 			model.addElement(st);
 		}
