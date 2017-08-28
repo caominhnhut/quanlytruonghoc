@@ -8,8 +8,10 @@ import javax.swing.*;
 public class PlaceHolderTextField extends JTextField {
 
 	private String placeholder;
+	private int vitri;
 
-	public PlaceHolderTextField(String text, int size) {
+	public PlaceHolderTextField(String text, int size,int vitri) {
+		this.vitri=vitri;
 		setColumns(size);
 		final Font f = getFont();
 		setFont(new Font(f.getName(), f.getStyle(), 14));
@@ -27,7 +29,7 @@ public class PlaceHolderTextField extends JTextField {
 		final Graphics2D g = (Graphics2D) pG;
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g.setColor(getDisabledTextColor());
-		g.drawString(placeholder, getInsets().left, 25);
+		g.drawString(placeholder, getInsets().left, vitri);
 	}
 
 	public void setPlaceholder(final String s) {

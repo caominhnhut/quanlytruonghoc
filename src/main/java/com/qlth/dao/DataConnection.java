@@ -6,6 +6,10 @@ import java.sql.DriverManager;
 import javax.swing.JOptionPane;
 
 public class DataConnection {
+	protected Connection conn = null;
+	protected String url = "jdbc:mysql://localhost:3306/quanlytruonghoc?useSSL=true";
+	protected String username = "root";
+	protected String password = "root";
 
 	public Connection con;
 	
@@ -16,7 +20,7 @@ public class DataConnection {
 			final String password="root";
 			
 			try{
-				Class.forName("com.mysql.jdbc.Driver");
+				
 				con=DriverManager.getConnection(url,username,password);
 				return con;
 			}catch(Exception e){

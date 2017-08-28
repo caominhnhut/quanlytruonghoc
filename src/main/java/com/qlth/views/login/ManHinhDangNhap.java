@@ -181,7 +181,7 @@ public class ManHinhDangNhap implements ActionListener {
 	}
 
 	public void createTfDangNhap() {
-		this.tfDangNhap = new PlaceHolderTextField("Tên Đăng Nhập", 12);
+		this.tfDangNhap = new PlaceHolderTextField("Tên Đăng Nhập", 12,25);
 	}
 
 	public JPasswordField getPass() {

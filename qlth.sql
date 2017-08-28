@@ -1,3 +1,4 @@
+drop database quanlytruonghoc;
 create database quanlytruonghoc;
 use quanlytruonghoc;
 
