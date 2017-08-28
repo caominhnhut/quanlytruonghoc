@@ -24,6 +24,7 @@ import javax.swing.border.TitledBorder;
 import com.qlth.constant.Constant;
 
 import com.qlth.views.hocsinh.DanhSachHocSinh;
+import com.qlth.views.login.ManHinhDangNhap;
 
 @SuppressWarnings("serial")
 public class ManHinhQuanLy extends JFrame implements ActionListener {
@@ -350,11 +351,17 @@ public class ManHinhQuanLy extends JFrame implements ActionListener {
 
 	public void createMnItemLogout() {
 		this.mnItemLogout = new JMenuItem("Logout");
+		this.mnItemLogout.addActionListener(this);
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btStudent) {
 			card.show(pnView, Constant.MAN_HINH_DSHS);
+		}
+		if (e.getSource() == mnItemLogout) {
+			dispose();
+			ManHinhDangNhap mhdn = new ManHinhDangNhap();
+			mhdn.createGUI();
 		}
 	}
 }

@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -27,9 +29,12 @@ import com.qlth.bus.GiaoVienLopHocBus;
 import com.qlth.bus.HocSinhBus;
 import com.qlth.factory.PlaceHolderTextField;
 import com.qlth.model.HocSinh;
-import com.qlth.model.LopHoc;
 
-public class DanhSachHocSinh {
+import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
+import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
+import net.sourceforge.jdatepicker.impl.UtilDateModel;
+
+public class DanhSachHocSinh implements ActionListener {
 
 	private JLabel lbTieuDe;
 	private JComboBox<String> cbDanhSachLop;
@@ -72,6 +77,7 @@ public class DanhSachHocSinh {
 	}
 
 	public JPanel createPnDSHS() {
+		
 		lbTieuDe.setBorder(new EmptyBorder(10, 0, 20, 0));
 		pnTieuDe.add(lbTieuDe);
 
@@ -237,6 +243,7 @@ public class DanhSachHocSinh {
 		this.btnThemMoi = new JButton("Thêm Mới");
 		ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("images\\addnew.png"));
 		btnThemMoi.setIcon(icon);
+		btnThemMoi.addActionListener(this);
 	}
 
 	public JButton getBtnXuatExcel() {
@@ -332,6 +339,14 @@ public class DanhSachHocSinh {
 	}
 
 	public void createTxtTim() {
-		this.txtTim = new PlaceHolderTextField("Nhap ten can tim", 12);
+		this.txtTim = new PlaceHolderTextField("Nhap ten can tim", 12,18);
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==btnThemMoi){
+			ThemHocSinh ths=new ThemHocSinh();
+			ths.createGUI();
+		}
+		
 	}
 }

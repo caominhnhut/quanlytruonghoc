@@ -15,12 +15,16 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import com.qlth.bus.NguoiDungBUS;
+import com.qlth.bus.impl.NguoiDungBusImpl;
 import com.qlth.factory.LinkButton;
 import com.qlth.factory.PlaceHolderTextField;
+import com.qlth.model.NguoiDung;
 import com.qlth.views.quanly.ManHinhQuanLy;
 
 public class ManHinhDangNhap implements ActionListener {
@@ -35,6 +39,7 @@ public class ManHinhDangNhap implements ActionListener {
 	private JCheckBox cbGhiNho;
 	private JButton btDangNhap;
 	private JButton btThoat;
+	private NguoiDungBUS nguoiDungBus;
 
 	// public static void main(String[] args) {
 	// EventQueue.invokeLater(new Runnable() {
@@ -51,6 +56,7 @@ public class ManHinhDangNhap implements ActionListener {
 
 	public ManHinhDangNhap() {
 		initialize();
+		nguoiDungBus = new NguoiDungBusImpl();
 	}
 
 	public void initialize() {
@@ -111,20 +117,40 @@ public class ManHinhDangNhap implements ActionListener {
 	public void createFrame() {
 		frame = new JFrame("Đăng nhập");
 		frame.setBounds(100, 100, 600, 340);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		;
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		;
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false); // co dinh man hinh
 		frame.setLayout(new BorderLayout());
 		frame.setVisible(true);
-		ImageIcon icon=layAnhTuResource("images\\school_icon.png");
+		ImageIcon icon = layAnhTuResource("images\\school_icon.png");
 		frame.setIconImage(icon.getImage());
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btDangNhap) {
-			frame.dispose();
-			ManHinhQuanLy mhql = new ManHinhQuanLy();
-			mhql.showUI();
+			String tenDN = tfDangNhap.getText();
+			String matKhau = new String(pass.getPassword());
+			if (tenDN.isEmpty() || matKhau.isEmpty()) {
+				JOptionPane.showMessageDialog(frame, "Vui long nhap day du du lieu", "Canh báo",
+						JOptionPane.WARNING_MESSAGE);
+			} else {
+				NguoiDung nguoiDung = new NguoiDung();
+				nguoiDung.setTenDN(tenDN);
+				nguoiDung.setMatkhau(matKhau);
+				Boolean rs = nguoiDungBus.timNguoiDung(nguoiDung);
+				if (rs) {
+					frame.dispose();
+					ManHinhQuanLy mhql = new ManHinhQuanLy();
+					mhql.showUI();
+				} else {
+					JOptionPane.showMessageDialog(frame, "Ten dang nhap hoac mat khau khong chinh xac.", "Thông báo",
+							JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		}
+		if (e.getSource() == btThoat) {
+			System.exit(0);
 		}
 	}
 
@@ -140,13 +166,13 @@ public class ManHinhDangNhap implements ActionListener {
 		lbDangNhap.setOpaque(true);
 		lbDangNhap.setFont(new Font("Serif", Font.BOLD, 35));
 	}
-	
+
 	public JLabel getLbImg() {
 		return lbImg;
 	}
 
 	public void createLbImg() {
-		this.lbImg = new  JLabel();
+		this.lbImg = new JLabel();
 		lbImg.setIcon(layAnhTuResource("img\\login.png"));
 	}
 
@@ -155,7 +181,7 @@ public class ManHinhDangNhap implements ActionListener {
 	}
 
 	public void createTfDangNhap() {
-		this.tfDangNhap = new PlaceHolderTextField("Tên Đăng Nhập", 12);
+		this.tfDangNhap = new PlaceHolderTextField("Tên Đăng Nhập", 12,25);
 	}
 
 	public JPasswordField getPass() {
@@ -182,22 +208,23 @@ public class ManHinhDangNhap implements ActionListener {
 	public void createBtQuenMatKhau() {
 		this.btQuenMatKhau = new LinkButton("Quên mật khẩu");
 	}
-	
-	public void createBtDangNhap(){
+
+	public void createBtDangNhap() {
 		ImageIcon icon = layAnhTuResource("img\\check-icon.png");
 		this.btDangNhap = new JButton();
 		this.btDangNhap.setIcon(icon);
 		this.btDangNhap.setText("Đăng Nhập");
 		this.btDangNhap.addActionListener(this);
 	}
-	
-	public void createBtThoat(){
-		btThoat=new JButton();
+
+	public void createBtThoat() {
+		btThoat = new JButton();
 		btThoat.setText("Thoát");
-		ImageIcon icon=layAnhTuResource("img\\Error-icon.png");
+		ImageIcon icon = layAnhTuResource("img\\Error-icon.png");
 		btThoat.setIcon(icon);
+		btThoat.addActionListener(this);
 	}
-	
+
 	public ImageIcon layAnhTuResource(String path) {
 		return new ImageIcon(getClass().getClassLoader().getResource(path));
 	}
