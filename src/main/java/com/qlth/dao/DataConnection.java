@@ -10,7 +10,7 @@ public class DataConnection {
 	protected Connection conn = null;
 	protected String url = "jdbc:mysql://localhost:3306/quanlytruonghoc?useSSL=true";
 	protected String username = "root";
-	protected String password = "khongcopass";
+	protected String password = "root";
 
 	public Connection createConnect() {
 		if (conn == null) {
@@ -24,7 +24,7 @@ public class DataConnection {
 					JOptionPane.showMessageDialog(null, "Ket noi that bai");
 				}
 			} catch (ClassNotFoundException e) {
-				JOptionPane.showMessageDialog(null, "Ket noi that bai!");
+				JOptionPane.showMessageDialog(null, "Ket noi that bai!222");
 			}
 		}
 		return conn;

@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -25,8 +27,12 @@ import javax.swing.SpinnerNumberModel;
 
 import com.qlth.factory.PlaceHolderTextField;
 
+import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
+import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
+import net.sourceforge.jdatepicker.impl.UtilDateModel;
 
-public class ThemHocSinh {
+
+public class ThemHocSinh implements ActionListener{
 	private JFrame frame;
 	private JLabel lbHoTen;
 	private JLabel lbCMND;
@@ -46,10 +52,10 @@ public class ThemHocSinh {
 	private JTextField tfCMND;
 	private PlaceHolderTextField ptfSoDienThoai;
 	private JPasswordField pfMatKhau;
-	private PlaceHolderTextField ptfNgaySinh;
+	private JDatePickerImpl dpkNgaySinh;
 	private JTextField tfDanToc;
 	private PlaceHolderTextField ptfTonGiao;
-	private PlaceHolderTextField ptfNgayVaoHoc;
+	private JDatePickerImpl dpkNgayVaoHoc;
 	private JTextField tfDiaChi;
 	private PlaceHolderTextField ptfHoTenCha;
 	private PlaceHolderTextField ptfNgheNghiepCha;
@@ -101,7 +107,7 @@ public class ThemHocSinh {
 		createLbNamSinhMe();
 		createLbNgaySinh();
 		createLbTonGiao();
-		createLbTrangThai();
+		createLbNgayVaoHoc();
 		createLbAnh();
 		createBtCapNhatHinh();
 		createTfCMND();
@@ -115,10 +121,10 @@ public class ThemHocSinh {
 		createPtfHoTenMe();
 		createPtfTenDangNhap();
 		createPtfSoDienThoai();
-		createPtfNgayVaoHoc();
+		createDpkNgayVaoHoc();
 		createPtfSoDienThoai();
 		createPtfTonGiao();
-		createPtfNgaySinh();
+		createDpkNgaySinh();
 		createPtfNgheNghiepCha();
 		createPtfNgheNghiepMe();
 		createPtfSoDienThoai();
@@ -148,6 +154,7 @@ public class ThemHocSinh {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 800, 500);
 		frame.setVisible(true);
+		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
@@ -190,7 +197,7 @@ public class ThemHocSinh {
 		gbc.gridy=2;
 		pnTren.add(lbNgaySinh, gbc);
 		gbc.gridx=1;
-		pnTren.add(ptfNgaySinh, gbc);
+		pnTren.add(dpkNgaySinh, gbc);
 		gbc.gridx=2;
 		pnTren.add(cbChonKhoiHoc,gbc);
 		gbc.gridx=3;
@@ -223,9 +230,9 @@ public class ThemHocSinh {
 		gbc.gridy=5;
 		pnTren.add(lbTrangThai, gbc);
 		gbc.gridx=1;
-		pnTren.add(cbChonTrangThai, gbc);
+		pnTren.add(dpkNgayVaoHoc, gbc);
 		gbc.gridx=2;
-		pnTren.add(ptfNgayVaoHoc, gbc);
+		pnTren.add(cbChonTrangThai, gbc);
 		
 		gbc.gridx=0;
 		gbc.gridy=6;
@@ -325,12 +332,12 @@ public class ThemHocSinh {
 		this.lbTonGiao = new JLabel("Tôn giáo");
 	}
 
-	public JLabel getLbTrangThai() {
+	public JLabel getLbNgayVaoHoc() {
 		return lbTrangThai;
 	}
 
-	public void createLbTrangThai() {
-		this.lbTrangThai = new JLabel("Trạng thái");
+	public void createLbNgayVaoHoc() {
+		this.lbTrangThai = new JLabel("Ngày vào học: ");
 	}
 
 	public JLabel getLbDiaChi() {
@@ -396,7 +403,7 @@ public class ThemHocSinh {
 	}
 
 	public void createPtfEmail() {
-		this.ptfEmail = new PlaceHolderTextField("Email", 12);
+		this.ptfEmail = new PlaceHolderTextField("Email", 12,15);
 	}
 
 	public PlaceHolderTextField getPtfTenDangNhap() {
@@ -404,7 +411,7 @@ public class ThemHocSinh {
 	}
 
 	public void createPtfTenDangNhap() {
-		this.ptfTenDangNhap = new PlaceHolderTextField("Tên đăng nhập", 12);
+		this.ptfTenDangNhap = new PlaceHolderTextField("Tên đăng nhập", 12,15);
 	}
 
 	public JTextField getTfCMND() {
@@ -420,7 +427,7 @@ public class ThemHocSinh {
 	}
 
 	public void createPtfSoDienThoai() {
-		this.ptfSoDienThoai = new PlaceHolderTextField("Số điện thoại", 12);
+		this.ptfSoDienThoai = new PlaceHolderTextField("Số điện thoại", 12,15);
 	}
 
 	public JTextField getPfMatKhau() {
@@ -432,12 +439,14 @@ public class ThemHocSinh {
 		pfMatKhau.setEchoChar('*');
 	}
 
-	public PlaceHolderTextField getPtfNgaySinh() {
-		return ptfNgaySinh;
+	public JDatePickerImpl getDpkNgaySinh() {
+		return dpkNgaySinh;
 	}
 
-	public void createPtfNgaySinh() {
-		this.ptfNgaySinh = new PlaceHolderTextField("Date picker",12);
+	public void createDpkNgaySinh() {
+		UtilDateModel model = new UtilDateModel();
+		JDatePanelImpl datePanel = new JDatePanelImpl(model);
+		dpkNgaySinh= new JDatePickerImpl(datePanel);
 	}
 
 	public JTextField getTfDanToc() {
@@ -453,15 +462,17 @@ public class ThemHocSinh {
 	}
 
 	public void createPtfTonGiao() {
-		this.ptfTonGiao = new PlaceHolderTextField("Tôn giáo",12);
+		this.ptfTonGiao = new PlaceHolderTextField("Tôn giáo",12,16);
 	}
 
-	public PlaceHolderTextField getPtfNgayVaoHoc() {
-		return ptfNgayVaoHoc;
+	public JDatePickerImpl getDpkNgayVaoHoc() {
+		return dpkNgayVaoHoc;
 	}
 
-	public void createPtfNgayVaoHoc() {
-		this.ptfNgayVaoHoc = new PlaceHolderTextField("Ngày vào học",12);
+	public void createDpkNgayVaoHoc() {
+		UtilDateModel model = new UtilDateModel();
+		JDatePanelImpl datePanel = new JDatePanelImpl(model);
+		dpkNgayVaoHoc = new JDatePickerImpl(datePanel);
 	}
 
 	public JTextField getTfDiaChi() {
@@ -477,7 +488,7 @@ public class ThemHocSinh {
 	}
 
 	public void createPtfHoTenCha() {
-		this.ptfHoTenCha = new PlaceHolderTextField("Họ tên cha", 12);
+		this.ptfHoTenCha = new PlaceHolderTextField("Họ tên cha", 12,16);
 	}
 
 	public PlaceHolderTextField getPtfNgheNghiepCha() {
@@ -485,7 +496,7 @@ public class ThemHocSinh {
 	}
 
 	public void createPtfNgheNghiepCha() {
-		this.ptfNgheNghiepCha = new PlaceHolderTextField("Nghề nghiệp Cha",12);
+		this.ptfNgheNghiepCha = new PlaceHolderTextField("Nghề nghiệp Cha",12,16);
 	}
 
 	public JTextField getTfDienThoaiCha() {
@@ -501,7 +512,7 @@ public class ThemHocSinh {
 	}
 
 	public void createPtfHoTenMe() {
-		this.ptfHoTenMe = new PlaceHolderTextField("Họ tên mẹ",12);
+		this.ptfHoTenMe = new PlaceHolderTextField("Họ tên mẹ",12,16);
 	}
 
 	public JTextField getfDienThoaiMe() {
@@ -517,7 +528,7 @@ public class ThemHocSinh {
 	}
 
 	public void createPtfNgheNghiepMe() {
-		this.ptfNgheNghiepMe = new PlaceHolderTextField("Nghề nghiệp mẹ", 12);
+		this.ptfNgheNghiepMe = new PlaceHolderTextField("Nghề nghiệp mẹ", 12,16);
 	}
 	
 	
@@ -664,6 +675,11 @@ public class ThemHocSinh {
 		model.addElement("Khối 10");
 		model.addElement("Khối 10");
 		this.cbChonTrangThai = new JComboBox<String>(model);
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		
+		
 	}
 	
 	

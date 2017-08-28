@@ -1,3 +1,4 @@
+drop database quanlytruonghoc;
 create database quanlytruonghoc;
 use quanlytruonghoc;
 
@@ -254,3 +255,4 @@ insert into giaovien_chunhiem(mand,malop,nienkhoa) values('GV001','102','2015-20
 select *
 from giaovien_chunhiem gvcn join lophoc lh on gvcn.malop=lh.malop
 where gvcn.mand='GV001';
+
