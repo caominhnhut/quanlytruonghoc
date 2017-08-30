@@ -128,7 +128,10 @@ public class ManHinhDangNhap implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == btDangNhap) {
+		if(e.getSource() == tfDangNhap || e.getSource() == pass){
+			btDangNhap.doClick();
+		}
+		if (e.getSource() == btDangNhap ) {
 			String tenDN = tfDangNhap.getText();
 			String matKhau = new String(pass.getPassword());
 			if (tenDN.isEmpty() || matKhau.isEmpty()) {
@@ -182,6 +185,7 @@ public class ManHinhDangNhap implements ActionListener {
 
 	public void createTfDangNhap() {
 		this.tfDangNhap = new PlaceHolderTextField("Tên Đăng Nhập", 12,25);
+		this.tfDangNhap.addActionListener(this);
 	}
 
 	public JPasswordField getPass() {
@@ -190,7 +194,7 @@ public class ManHinhDangNhap implements ActionListener {
 
 	public void createPass() {
 		this.pass = new JPasswordField();
-
+		this.pass.addActionListener(this);
 	}
 
 	public JCheckBox getCbGhiNho() {
