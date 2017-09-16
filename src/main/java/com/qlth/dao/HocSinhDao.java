@@ -1,11 +1,11 @@
-package com.qlth.bus;
+package com.qlth.dao;
 
 import java.util.ArrayList;
 
 import com.qlth.model.HocSinh;
 import com.qlth.model.LopHoc;
 
-public interface HocSinhBus {
+public interface HocSinhDao {
 	public ArrayList<HocSinh> getDanhSachHocSinh();
 
 	public ArrayList<HocSinh> getHocSinhTheoLop(LopHoc lop);
