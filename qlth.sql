@@ -273,6 +273,6 @@ insert into hocsinh_lop(mand,malop,nienkhoa,ngay_nhap_hoc) values('HS005','101',
 
 select * from hocsinh_lop;
 
-
-
-
+update nguoidung set hinhanh='photo\\Taylor.png' ;
+select * from nguoidung;
+	

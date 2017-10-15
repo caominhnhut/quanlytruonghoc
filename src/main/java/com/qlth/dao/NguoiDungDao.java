@@ -4,5 +4,5 @@ import com.qlth.model.NguoiDung;
 
 public interface NguoiDungDao {
 
-	public Boolean timNguoiDung(NguoiDung nguoiDung);
+	public NguoiDung timNguoiDung(NguoiDung nguoiDung);
 }
