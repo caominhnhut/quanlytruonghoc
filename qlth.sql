@@ -1,3 +1,4 @@
+drop database quanlytruonghoc;
 create database quanlytruonghoc;
 use quanlytruonghoc;
 
@@ -148,11 +149,14 @@ references lophoc(malop);
 insert into loainguoidung(ma_lnd,tenloai) values("HS","Học Sinh");
 insert into loainguoidung(ma_lnd,tenloai) values("GV","Giáo Viên");
 select * from loainguoidung;
+
 /*insert data into trangthai*/
 insert into trangthai(matt,ten_trang_thai) values("1","Còn học");
 insert into trangthai(matt,ten_trang_thai) values("2","Đã nghỉ học");
 insert into trangthai(matt,ten_trang_thai) values("3","Còn công tác");
 insert into trangthai(matt,ten_trang_thai) values("4","Nghỉ công tác");
+select * from trangthai;
+
 /*insert data into nguoidung*/
 insert into nguoidung(mand,ten_dang_nhap,matkhau,hoten,cmnd,ngaycap,noicap,sdt,ngaysinh,dantoc,tongiao,quoctich,gioitinh,hinhanh,diachi,trangthai,loai_nguoi_dung)
 values("HS001","trangiathinh","3115410153","Tran Gia Thinh","321561937","2012-12-12","Ben Tre","0979857737","1997-06-19","Kinh","Không","Viet Nam","Nam","","Ben Tre","1","HS");
@@ -196,6 +200,8 @@ values("HS013","phanthihuyen","3115555115","Phan Thi Huyen","321244987","2012-05
 insert into nguoidung(mand,ten_dang_nhap,matkhau,hoten,cmnd,ngaycap,noicap,sdt,ngaysinh,dantoc,tongiao,quoctich,gioitinh,hinhanh,diachi,trangthai,loai_nguoi_dung)
 values("HS014","ngothibap","31155124987","Ngo Thi Bap","321224681","2012-01-19","Ben Tre","0245641089","1997-11-16","Kinh","Không","Viet Nam","Nu","","Ben Tre","1","HS");
 
+select * from nguoidung;
+
 insert into nguoidung(mand,ten_dang_nhap,matkhau,hoten,cmnd,ngaycap,noicap,sdt,ngaysinh,dantoc,tongiao,quoctich,gioitinh,hinhanh,diachi,trangthai,loai_nguoi_dung)
 values("HS015","nguyenthihoa","3115511187","Nguyen Thi Hoa","321221221","2012-11-10","Chau Doc","0137108923","1997-12-31","Kinh","Không","Viet Nam","Nu","","Ben Tre","1","HS");
 insert into nguoidung(mand,ten_dang_nhap,matkhau,hoten,cmnd,ngaycap,noicap,sdt,ngaysinh,dantoc,tongiao,quoctich,gioitinh,hinhanh,diachi,trangthai,loai_nguoi_dung)
@@ -220,9 +226,10 @@ insert into nguoidung(mand,ten_dang_nhap,matkhau,hoten,cmnd,ngaycap,noicap,sdt,n
 values("HS025","nguyenthihoa","3115511187","Nguyen Thi Hoa","321221221","2012-11-10","Chau Doc","0137108923","1997-12-31","Kinh","Không","Viet Nam","Nu","","Ben Tre","1","HS");
 insert into nguoidung(mand,ten_dang_nhap,matkhau,hoten,cmnd,ngaycap,noicap,sdt,ngaysinh,dantoc,tongiao,quoctich,gioitinh,hinhanh,diachi,trangthai,loai_nguoi_dung)
 values("GV001","caominhnhut","3115420612","Nguyen Cao Minh Nhut","221511957","2000-03-12","Bến Tre","0123456789","1984-11-10","Kinh","Không","Viet Nam","Nam","","Thành phố Hồ Chí Minh","3","GV");
-
 insert into nguoidung(mand,ten_dang_nhap,matkhau,hoten,cmnd,ngaycap,noicap,sdt,ngaysinh,dantoc,tongiao,quoctich,gioitinh,hinhanh,diachi,trangthai,loai_nguoi_dung)
 values("GV002","phantanquoc","3115420600","Phan Tan Quoc","123511957","1990-01-13","Bạc Liêu","024681111","1979-02-14","Kinh","Không","Viet Nam","Nam","","Thành phố Hồ Chí Minh","3","GV");
+insert into nguoidung(mand,ten_dang_nhap,matkhau,hoten,cmnd,ngaycap,noicap,sdt,ngaysinh,dantoc,tongiao,quoctich,gioitinh,hinhanh,diachi,trangthai,loai_nguoi_dung)
+values("GV003","gv","123","Nhut Dep Trai","221511957","2000-03-12","Bến Tre","0123456789","1984-11-10","Kinh","Không","Viet Nam","Nam","","Thành phố Hồ Chí Minh","3","GV");
 
 select * from nguoidung;
 /*insert data into khoilop*/
@@ -254,25 +261,4 @@ insert into giaovien_chunhiem(mand,malop,nienkhoa) values('GV001','102','2015-20
 select *
 from giaovien_chunhiem gvcn join lophoc lh on gvcn.malop=lh.malop
 where gvcn.mand='GV001';
-
-/*insert data into hocsinh*/
-insert into hocsinh(mand,doi_tuong_uu_tien) values('HS001','Khong');
-insert into hocsinh(mand,doi_tuong_uu_tien) values('HS002','Khong');
-insert into hocsinh(mand,doi_tuong_uu_tien) values('HS003','Nguoi dan toc');
-insert into hocsinh(mand,doi_tuong_uu_tien) values('HS004','Con thuong binh');
-insert into hocsinh(mand,doi_tuong_uu_tien) values('HS005','Ho ngheo');
-
-select* from hocsinh;
-
-/*insert data into hocsinh_lop*/
-insert into hocsinh_lop(mand,malop,nienkhoa,ngay_nhap_hoc) values('HS001','101','2014-2015','2014-08-15');
-insert into hocsinh_lop(mand,malop,nienkhoa,ngay_nhap_hoc) values('HS002','102','2014-2015','2014-08-15');
-insert into hocsinh_lop(mand,malop,nienkhoa,ngay_nhap_hoc) values('HS003','101','2014-2015','2014-08-15');
-insert into hocsinh_lop(mand,malop,nienkhoa,ngay_nhap_hoc) values('HS004','101','2014-2015','2014-08-15');
-insert into hocsinh_lop(mand,malop,nienkhoa,ngay_nhap_hoc) values('HS005','101','2014-2015','2014-08-15');
-
-select * from hocsinh_lop;
-
-
-
 
