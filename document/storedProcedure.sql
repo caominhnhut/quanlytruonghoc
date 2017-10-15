@@ -38,7 +38,6 @@ DELIMITER $$
 DELIMITER ;
 call getTenLop('GV001');
 
-
 /*them hoc sinh*/
 DELIMITER $$
 	drop procedure if exists themHocSinh $$
@@ -81,3 +80,17 @@ call themHocSinh('HS035','hoangsonsb','123','Nguyen Hoang Son','352354238','1990
 delete hocsinh
 from hocsinh
 where hs.mand='HS026';
+
+/*create store procedure getHocSinhTheoLop*/
+DELIMITER $$
+	drop procedure if exists getHocSinhTheoLop $$
+    create procedure getHocSinhTheoLop(
+		in_tenlop varchar(50)
+    )
+    begin
+		select * from nguoidung nd where nd.mand in(
+		select mand from hocsinh_lop hsl where hsl.malop=(select malop from lophoc where tenlop=in_tenlop)
+);
+    end; $$
+DELIMITER ;
+call getHocSinhTheoLop('10A1');

@@ -20,11 +20,16 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.qlth.bus.NguoiDungBus;
 import com.qlth.bus.impl.NguoiDungBusImpl;
+import com.qlth.dao.NguoiDungDao;
 import com.qlth.factory.LinkButton;
 import com.qlth.factory.PlaceHolderTextField;
 import com.qlth.model.NguoiDung;
+import com.qlth.model.ResponseData;
 import com.qlth.views.quanly.ManHinhQuanLy;
 
 public class ManHinhDangNhap implements ActionListener {
@@ -40,7 +45,9 @@ public class ManHinhDangNhap implements ActionListener {
 	private JButton btDangNhap;
 	private JButton btThoat;
 	private NguoiDungBus nguoiDungBus;
-
+	
+	public static final Log logger = LogFactory.getLog(ManHinhDangNhap.class);
+	
 	// public static void main(String[] args) {
 	// EventQueue.invokeLater(new Runnable() {
 	// public void run() {
@@ -127,33 +134,6 @@ public class ManHinhDangNhap implements ActionListener {
 		frame.setIconImage(icon.getImage());
 	}
 
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == btDangNhap) {
-			String tenDN = tfDangNhap.getText();
-			String matKhau = new String(pass.getPassword());
-			if (tenDN.isEmpty() || matKhau.isEmpty()) {
-				JOptionPane.showMessageDialog(frame, "Vui long nhap day du du lieu", "Canh báo",
-						JOptionPane.WARNING_MESSAGE);
-			} else {
-				NguoiDung nguoiDung = new NguoiDung();
-				nguoiDung.setTenDN(tenDN);
-				nguoiDung.setMatkhau(matKhau);
-				Boolean rs = nguoiDungBus.timNguoiDung(nguoiDung);
-				if (rs) {
-					frame.dispose();
-					ManHinhQuanLy mhql = new ManHinhQuanLy();
-					mhql.showUI();
-				} else {
-					JOptionPane.showMessageDialog(frame, "Ten dang nhap hoac mat khau khong chinh xac.", "Thông báo",
-							JOptionPane.ERROR_MESSAGE);
-				}
-			}
-		}
-		if (e.getSource() == btThoat) {
-			System.exit(0);
-		}
-	}
-
 	public void createPnDangNhap() {
 		this.pnDangNhap = new JPanel();
 		this.pnDangNhap.setLayout(new GridBagLayout());
@@ -182,6 +162,7 @@ public class ManHinhDangNhap implements ActionListener {
 
 	public void createTfDangNhap() {
 		this.tfDangNhap = new PlaceHolderTextField("Tên Đăng Nhập", 12,25);
+		this.tfDangNhap.addActionListener(this);
 	}
 
 	public JPasswordField getPass() {
@@ -190,7 +171,7 @@ public class ManHinhDangNhap implements ActionListener {
 
 	public void createPass() {
 		this.pass = new JPasswordField();
-
+		this.pass.addActionListener(this);
 	}
 
 	public JCheckBox getCbGhiNho() {
@@ -227,5 +208,38 @@ public class ManHinhDangNhap implements ActionListener {
 
 	public ImageIcon layAnhTuResource(String path) {
 		return new ImageIcon(getClass().getClassLoader().getResource(path));
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == tfDangNhap || e.getSource() == pass){
+			btDangNhap.doClick();
+		}
+		if (e.getSource() == btDangNhap ) {
+			String tenDN = tfDangNhap.getText();
+			String matKhau = new String(pass.getPassword());
+			if (tenDN.isEmpty() || matKhau.isEmpty()) {
+				JOptionPane.showMessageDialog(frame, "Vui long nhap day du du lieu", "Canh báo",
+						JOptionPane.WARNING_MESSAGE);
+			} else {
+				NguoiDung nguoiDung = new NguoiDung();
+				nguoiDung.setTenDN(tenDN);
+				nguoiDung.setMatkhau(matKhau);
+				ResponseData<NguoiDung> rs = nguoiDungBus.timNguoiDung(nguoiDung);
+				if (rs.getData() != null) {
+					logger.info(rs.getData().getMaND());
+					logger.info(rs.getData().getHoten());
+					logger.info(rs.getData().getHinhanh());
+					frame.dispose();
+					ManHinhQuanLy mhql = new ManHinhQuanLy(rs.getData());
+					mhql.showUI();
+				} else {
+					JOptionPane.showMessageDialog(frame, rs.getErrorMessage(), "Thông báo",
+							JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		}
+		if (e.getSource() == btThoat) {
+			System.exit(0);
+		}
 	}
 }

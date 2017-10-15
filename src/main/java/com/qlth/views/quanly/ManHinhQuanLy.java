@@ -22,7 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
 import com.qlth.constant.Constant;
-
+import com.qlth.model.NguoiDung;
 import com.qlth.views.hocsinh.DanhSachHocSinh;
 import com.qlth.views.login.ManHinhDangNhap;
 
@@ -51,9 +51,11 @@ public class ManHinhQuanLy extends JFrame implements ActionListener {
 	private JMenu mnFile;
 	private JMenu mnView;
 	private JMenuItem mnItemLogout;
+	private NguoiDung nguoiDung;
 
-	public ManHinhQuanLy() {
+	public ManHinhQuanLy(NguoiDung nguoiDung) {		
 		super("Man Hinh Quan Ly");
+		this.nguoiDung = nguoiDung;
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setMinimumSize(new Dimension(700, 600));
 		setLayout(new BorderLayout());
@@ -64,18 +66,18 @@ public class ManHinhQuanLy extends JFrame implements ActionListener {
 		setVisible(true);
 	}
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ManHinhQuanLy mhql = new ManHinhQuanLy();
-					mhql.showUI();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	// public static void main(String[] args) {
+	// EventQueue.invokeLater(new Runnable() {
+	// public void run() {
+	// try {
+	// ManHinhQuanLy mhql = new ManHinhQuanLy();
+	// mhql.showUI();
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// }
+	// }
+	// });
+	// }
 
 	public void showUI() {
 		add(createWestPanel(), BorderLayout.WEST);
@@ -184,7 +186,7 @@ public class ManHinhQuanLy extends JFrame implements ActionListener {
 	}
 
 	public void createLbImg() {
-		ImageIcon icon = createIconFromResource("images\\addimage.png");
+		ImageIcon icon = createIconFromResource(this.nguoiDung.getHinhanh());
 		this.lbImg = new JLabel(icon);
 	}
 
@@ -193,7 +195,7 @@ public class ManHinhQuanLy extends JFrame implements ActionListener {
 	}
 
 	public void createLbUser() {
-		this.lbUser = new JLabel("Người dùng: Thinh Tran");
+		this.lbUser = new JLabel("Người dùng: " + this.nguoiDung.getHoten());
 	}
 
 	public JLabel getLbId() {
@@ -201,7 +203,7 @@ public class ManHinhQuanLy extends JFrame implements ActionListener {
 	}
 
 	public void createLbId() {
-		this.lbId = new JLabel("MSSV: 3115410153");
+		this.lbId = new JLabel("MSSV: " + this.nguoiDung.getMaND());
 	}
 
 	public JButton getBtStudent() {

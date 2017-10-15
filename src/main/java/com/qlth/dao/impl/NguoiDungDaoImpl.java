@@ -20,18 +20,19 @@ public class NguoiDungDaoImpl implements NguoiDungDao {
 
 	private DataConnection dc = new DataConnection();
 
-	public Boolean timNguoiDung(NguoiDung nguoiDung) {
-		Boolean result = false;
+	public NguoiDung timNguoiDung(NguoiDung nguoiDung) {
 		try {
 			dc.createConnect();
 			logger.info("Processing for authentication");
 			CallableStatement proc = (CallableStatement) dc.createConnect().prepareCall("{call dangNhap(?,?)}");
 			proc.setString(1, nguoiDung.getTenDN());
 			proc.setString(2, nguoiDung.getMatkhau());
-			logger.info(proc);
 			ResultSet rs = proc.executeQuery();
 			if (rs.next()) {
-				result = true;
+				nguoiDung.setMaND(rs.getString(1));
+				nguoiDung.setHoten(rs.getString(2));
+				nguoiDung.setHinhanh(rs.getString(14));
+				return nguoiDung;
 			}
 			logger.info("Authentication is finished");
 		} catch (Exception e) {
@@ -44,7 +45,7 @@ public class NguoiDungDaoImpl implements NguoiDungDao {
 				logger.error(e.getMessage());
 			}
 		}
-		return result;
+		return null;
 	}
 
 	public Boolean themHocSinh(HocSinh hocSinh, PhuHuynh phuHuynh) {
