@@ -15,6 +15,7 @@ public class Execution {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					@SuppressWarnings("unused")
 					Execution ex=new Execution();
 					ManHinhDangNhap window = new ManHinhDangNhap();
 					window.createGUI();

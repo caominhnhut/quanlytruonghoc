@@ -1,4 +1,4 @@
-package com.qlth.bus.impl;
+﻿package com.qlth.bus.impl;
 
 import com.qlth.bus.NguoiDungBus;
 import com.qlth.dao.NguoiDungDao;
@@ -6,7 +6,7 @@ import com.qlth.dao.impl.NguoiDungDaoImpl;
 import com.qlth.model.NguoiDung;
 import com.qlth.model.ResponseData;
 
-public class NguoiDungBusImpl implements NguoiDungBus{
+public class NguoiDungBusImpl implements NguoiDungBus {
 
 	private NguoiDungDao nguoiDungDao = new NguoiDungDaoImpl();
 	

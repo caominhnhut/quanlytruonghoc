@@ -1,4 +1,4 @@
-create database quanlytruonghoc;
+﻿create database quanlytruonghoc;
 use quanlytruonghoc;
 
 create table nguoidung
@@ -223,6 +223,8 @@ values("GV001","caominhnhut","3115420612","Nguyen Cao Minh Nhut","221511957","20
 
 insert into nguoidung(mand,ten_dang_nhap,matkhau,hoten,cmnd,ngaycap,noicap,sdt,ngaysinh,dantoc,tongiao,quoctich,gioitinh,hinhanh,diachi,trangthai,loai_nguoi_dung)
 values("GV002","phantanquoc","3115420600","Phan Tan Quoc","123511957","1990-01-13","Bạc Liêu","024681111","1979-02-14","Kinh","Không","Viet Nam","Nam","","Thành phố Hồ Chí Minh","3","GV");
+insert into nguoidung(mand,ten_dang_nhap,matkhau,hoten,cmnd,ngaycap,noicap,sdt,ngaysinh,dantoc,tongiao,quoctich,gioitinh,hinhanh,diachi,trangthai,loai_nguoi_dung)
+values("GV003","gv","123","Phan Tan Quoc","123511957","1990-01-13","Bạc Liêu","024681111","1979-02-14","Kinh","Không","Viet Nam","Nam","","Thành phố Hồ Chí Minh","3","GV");
 
 select * from nguoidung;
 /*insert data into khoilop*/
@@ -275,4 +277,4 @@ select * from hocsinh_lop;
 
 update nguoidung set hinhanh='photo\\Taylor.png' ;
 select * from nguoidung;
-	
+

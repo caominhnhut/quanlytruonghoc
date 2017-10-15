@@ -37,3 +37,17 @@ DELIMITER $$
     end; $$
 DELIMITER ;
 call getTenLop('GV001');
+
+/*create store procedure getHocSinhTheoLop*/
+DELIMITER $$
+	drop procedure if exists getHocSinhTheoLop $$
+    create procedure getHocSinhTheoLop(
+		in_tenlop varchar(50)
+    )
+    begin
+		select * from nguoidung nd where nd.mand in(
+		select mand from hocsinh_lop hsl where hsl.malop=(select malop from lophoc where tenlop=in_tenlop)
+);
+    end; $$
+DELIMITER ;
+call getHocSinhTheoLop('10A1');
